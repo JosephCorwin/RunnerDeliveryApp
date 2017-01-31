@@ -1,0 +1,26 @@
+<% provide(:title, @user.full_name) %>
+<% if you_da_boss? %>
+  <p><%= @user.full_name %>!</p>
+  <p>Phone: <%= @user.phone %></p>
+  <p>Email: <%= @user.email %></p>
+  <%= image_tag @user.image.url %>
+
+  <% unless @user.works_here? %>
+    <%= link_to "Hire this person as a runner", "#{@user.id}/hire", class: "button", method: 'post', data: { confirm: "Are you sure?" } %>
+  <% end %>
+
+  <% if @user.works_here? %>
+    <div class="employee-info">
+    <p>This person is a: <%= @user.status %></p>
+    <%= link_to "Fire this person", "#{@user.id}/fire", class: "button", method: 'post', data: { confirm: "Are you sure?" } %>
+    <% if @user.is_runner? %>
+      <div class="orders">
+        <% @user.runner.orders.limit(5).order('id desc').each do |o|%>
+          <div class="line-order"><%= link_to "Order no. #{o.id}", o, class: "line-order" %></div>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+  <% end %>
+
+<% end %>

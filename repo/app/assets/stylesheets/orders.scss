@@ -1,0 +1,230 @@
+// Place all the styles related to the Orders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.orders {
+	width:100%;
+	max-width:$content-width;
+	position: relative;
+	@include margin($large-space-unit*3 auto 0);
+
+
+
+
+	input.open, 
+	input.done, 
+	input.prog {
+		@include padding($large-space-unit);
+		color:white;
+		@include font(1.3);
+	}
+	input.prog {
+		// @include gradient($errorcolor2, $highlightcolor);
+		background-color:$fourthcolor;
+	}
+	input.open {
+		background-color:$errorcolor2;
+
+	}
+	input.done {
+		background-color:$highlightcolor2;
+	}
+
+
+
+	.current-orders {
+		position: relative;
+		overflow: hidden;
+		width:95%;
+		@include margin(0 auto);
+		@include padding($small-space-unit $large-space-unit);
+		border-bottom:solid 2px $secondcolor;
+		clear:both;
+
+
+
+		&.done {
+			background-color:$highlightcolor3;
+		}
+
+		&.prog {
+			background-color:$highlightcolor4;
+		}
+
+		&.open {
+			background-color:$errorcolor1;
+		}
+
+		.assign {
+			@include padding($small-space-unit);
+			@include font(1);
+			display: inline-block;
+			vertical-align: middle;
+			@include margin(0);
+			font-weight: $light;
+			@include gradient(white,$maincolor);
+			width:20%;
+			float:right;
+
+		}
+
+		.line-order {
+			@include padding($small-space-unit);
+			width:40%;
+			vertical-align: middle;
+			display: inline-block;
+			position: relative;
+			overflow: hidden;
+			@include margin(0);
+
+		}
+
+		.runner-name{
+			width:14%;
+			vertical-align: middle;
+			display: inline-block;
+			@include padding($small-space-unit);
+			@include margin(0);
+		}
+
+		.order-num {
+			width:14%;
+			vertical-align: middle;
+			display: inline-block;
+			@include padding(0);
+			@include margin(0);
+
+			.button {
+				@include padding(0.3em);
+				@include font(1);
+				@include gradient(white,$maincolor);
+
+			}
+		}
+		
+
+	}
+
+
+	.order-details {
+		position: relative;
+		overflow: hidden;
+		@include margin(0);
+		@include padding($small-space-unit);
+		// width:50%;
+		// display:inline-block;
+		// vertical-align: top;
+
+
+		.sub-details {
+			position: relative;
+			overflow: hidden;
+			// @include font(1.5);
+			// display: block;
+			width:100%;
+			@include padding($large-space-unit*0.7 0);
+
+			h4 {
+				@include font(1.3);
+				//width:25%;
+				display: block;
+
+			}
+			.cust-name,
+			.runn-name,
+			.cust-order,
+			.pickup-spot,
+			.dropff-spot,
+			.pickup-time,
+			.dropff-time, 
+			.status,
+			.order-time {
+				position: relative;
+				overflow: hidden;
+				display: block;
+				@include font(1);
+				// @include padding($small-space-unit $large-space-unit*2);
+				width:auto;
+			}
+
+			.open {
+				background-color:$errorcolor2;
+				@include padding($small-space-unit);
+				color:white;
+			}
+			.prog {
+				// @include gradient($errorcolor2, $highlightcolor);
+				background-color:$fourthcolor;
+				@include padding($small-space-unit);
+				color:white;
+
+			}
+			.done {
+				background-color:$highlightcolor2;
+				@include padding($small-space-unit);
+			}
+		}
+	}
+
+	.edit_order {
+		vertical-align: top;
+		width:69%;
+		@include margin(0);
+		display: inline-block;
+		@include padding(0 $large-space-unit);
+
+		label {
+			font-family: $font;
+			@include padding($small-space-unit 0);
+			display: block;
+			@include font(1.4);
+		}
+		select,
+		textarea {
+    		border: solid 2px $thirdcolor;
+			@include padding($small-space-unit);
+			display: block;
+			font-family: $font;
+			// min-height: 20em;
+			background-color: $maincolor;
+			color:$secondcolor;
+			@include font(1.3);
+			-webkit-appearance: none;
+		    -moz-appearance: none;
+		    // border:1px solid #ccc;
+		    border-radius:3px;
+		    // padding:5px 3px;
+		}
+
+		textarea {
+			min-height:20em;
+			width:80%;
+		}
+
+		.button {
+			@include gradient(white,$maincolor);
+			@include font(1);
+
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

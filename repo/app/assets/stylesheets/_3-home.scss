@@ -1,0 +1,551 @@
+.home {
+	width:100%;
+	max-width:$content-width;
+	position: relative;
+	@include margin($large-space-unit*3 auto 0);
+
+	.scroll-button {
+		width: 50%;
+		max-width: 200px;
+		@include padding($large-space-unit);
+		@include margin($large-space-unit * 1 auto $large-space-unit * 6);
+
+		
+		img {
+			display: block;
+			width: 100%;
+			max-width: 50px;
+			background:transparent;
+			@include padding(0);
+			@include margin(0 auto);
+			filter:drop-shadow(4px 4px 4px $shadowcolor);
+
+		}
+		span {
+			text-align: center;
+			display: block;
+			@include font(1.5);
+			@include padding(0);
+			@include margin(0 auto);
+			letter-spacing:1px;
+			text-shadow: 4px 4px 4px $shadowcolor;
+			font-weight:$light;
+		}
+	}
+
+	.hero,
+	.mini-about,
+	.features,
+	.reviews {
+		width: 100%;
+		@include margin(0 auto);
+		position: relative;
+		overflow: hidden;
+		// @include padding($large-space-unit $small-space-unit * 1.6);
+		@include padding($large-space-unit 0);
+	}
+	// .grid-level {
+	// 	width:100%;
+	// 	position: relative;
+	// 	overflow: hidden;
+	// 	@include margin(0);
+	// 	@include padding(0);
+	// }
+	.two-grid {
+		width: 100%;
+		@include margin(0 auto);
+		vertical-align: middle;
+		position: relative;
+		overflow: hidden;
+
+		
+		@media screen and (min-width:$tablet) {
+			width:49.5%;
+			display: inline-block;
+			@include margin($large-space-unit * 2 0);
+		}
+
+		.button {
+			@include margin($large-space-unit * 2 0);
+
+		}
+		img, h2, h3, p, .box {
+			width:100%;
+			// max-width: 400px;
+			display: block;
+			position: relative;
+			overflow: hidden;
+			@include padding(0 $small-space-unit);
+			@include margin($small-space-unit*3 auto 0);
+			@media screen and (min-width:$tablet) {
+				width: 100%;
+				@include margin($small-space-unit 0 0);
+			}
+		}
+		
+		h2 {
+			@include font(2.1);
+			font-weight: $med;
+			// line-height: 1em;
+			width:80%;
+		}
+		h3 {
+			@include font(3.3);
+			line-height: .9em;
+			font-weight: $bold;
+			@include margin(0 0 $small-space-unit);
+			@include padding(0);
+			@media screen and (min-width:$tablet) {
+				// @include margin(0 0 $large-space-unit);
+			}
+		}
+		p {
+			@include font(1.1);
+			line-height: 1.3em;
+			width: 100%;
+			max-width: 350px;
+			@include margin($small-space-unit*2 0);
+			@include padding(0);
+			@media screen and (min-width:$tablet) {
+				// @include margin($small-space-unit*2 0);
+				// @include padding(0 $large-space-unit);
+
+			}
+		}
+	}
+	.hero {
+		.hero-logo {
+			filter:drop-shadow(4px 4px 6px $shadowcolor);
+			max-width: 250px;
+			@include margin($large-space-unit auto);
+		}
+
+		.button {
+			@include margin($small-space-unit*4 auto $small-space-unit);
+			@media screen and (min-width:$tablet) {
+				@include margin($small-space-unit*4 auto $small-space-unit 5%);
+
+			}
+		}
+		h4 {
+			@include font(1.3);
+			font-weight: $demi;
+			@include margin($small-space-unit 0);
+			color:$errorcolor2;
+		}
+
+		.third-nav {
+			display: none;
+		}
+		ol {
+			display: block;
+			width:100%;
+			position:relative;
+			overflow: hidden;
+			@include margin($small-space-unit);
+
+			li {
+				display: inline-block;
+				@include margin($small-space-unit 2% 0 0);
+				a {
+					display: inline-block;
+					@include padding($small-space-unit);
+					@include font(1.1);
+					font-weight: $light;
+				}
+				
+			}
+
+			&.open {
+				li {
+					background-color:$errorcolor2;
+					a {
+						color:white;
+					}
+				}
+			}
+			&.prog {
+				li {
+					background-color:$highlightcolor2;
+				}
+			}
+		}
+		.user-info {
+			position: relative;
+			display: block;
+			@include padding($small-space-unit);
+			li {
+				display: block;
+				@include margin($small-space-unit 0);
+				font-family: $font;
+				@include font(1);
+				font-weight: $bold;
+
+				span {
+				font-weight: $light;
+
+				}
+			}
+
+
+		}
+
+
+	}
+
+	.mini-about {
+		.two-grid {
+			vertical-align: top;
+
+			@media screen and (min-width:$tablet) {
+				@include padding($small-space-unit);
+			}
+
+		}
+		.advert {
+			// @include gradient($fourthcolor,$thirdcolor);
+			// min-height:35em; 
+			width:49%;
+				vertical-align: top;
+
+			min-height:16em;
+			max-width: 400px;
+			display: inline-block;
+			overflow: hidden;
+			@include margin($small-space-unit 0);
+			position: relative;
+			@include padding($large-space-unit);
+			@include font(1);
+			// border:1px solid $maincolor;
+			@media screen and (min-width:$tablet) {
+				@include padding($large-space-unit*2);
+				@include margin($small-space-unit 0);
+				// @include padding(0 0 0 5%);
+				@include font(0.8);
+				width: 100%;
+				// height:
+
+			}
+
+			h2, h4, span {
+				color:$maincolor;
+				display: block;
+				overflow: visible;
+				text-shadow: 4px 4px 4px $shadowcolor;
+
+			}
+
+			h4 {
+				@include font(1.3);
+				line-height: 1em;
+				
+				// @include margin(0 0 $small-space-unit);
+				@include margin(0);
+				@include padding(0);
+				width:85%;
+				&:nth-of-type(2) {
+					@include margin(0.5em 0 0 15%);
+					text-align: right;
+					// @include font(1.2);
+					// position: absolute;
+					// bottom:2em;
+					// right:1em;
+				}
+				@media screen and (min-width:$tablet) {
+					@include font(1.7);
+					line-height: 1em;
+					width:75%;
+					&:nth-of-type(2) {
+						@include margin(0.5em 0 0 25%);
+
+					}
+				}
+			}
+
+
+			h2 {
+				@include margin(0.1em auto 0);
+				@include padding(0);
+				width:90%;
+				line-height: 0.8em;
+				@include font(2);
+					line-height: 0.8em;
+
+				@media screen and (min-width:$tablet) {
+					@include font(3.5);
+					line-height: 0.8em;
+				}
+				font-weight: $bold;
+				color:$maincolor;
+			
+			}
+
+			span {	
+				position:absolute;
+				bottom:1em;
+				right:1em;
+				text-align: right;
+				width:50%;
+			}
+
+
+
+			&.bg-1,
+			&.bg-2 {
+				
+				
+				&:after {
+					content:'';
+					position: absolute;
+					top:0;
+					left:0;
+					width:100%;
+					height:100%;
+					z-index: -1;
+					background-color:$thirdcolor;
+					// @include gradient(white,$maincolor);
+					opacity: 0.5;
+				}
+				&:before {
+					content:'';
+					position: absolute;
+					top:0;
+					left:0;
+					width:100%;
+					height:100%;
+					z-index: -1;
+					background-size:cover !important;
+					background-repeat:no-repeat !important;
+					background-position:center !important;
+					// background-color:$thirdcolor;
+					opacity: 0.8;
+				}
+			}
+
+			&.bg-1:before {
+				background:url('features/sushi.jpg');
+			}
+			&.bg-2:before {
+				background:url('features/grocery.jpg');
+			}
+
+		}
+	}
+
+	.features {
+		// @include padding($small-space-unit);
+		.two-grid {
+			max-height: 13em;
+			// @include padding(1em);
+			position: relative;
+			overflow: hidden;
+			display: inline-block;
+			// @include padding($small-space-unit);
+			// background:transparent;
+			z-index: 1;
+			@include margin($small-space-unit/3);
+
+			@media screen and (min-width:$tablet - 190px) {
+				width:48.75%;
+				display: inline-block;
+				// @include margin($large-space-unit * 2 0);
+				// @include margin(0);
+			}
+			@media screen and (min-width:$tablet) {
+				width:49%;
+				display: inline-block;
+				// @include margin($large-space-unit * 2 0);
+				// @include margin(0);
+			}
+
+
+			&:after {
+				content: '';
+				position: absolute;
+				top:0;
+				left:0;
+				height:100%;
+				width:100%;
+				background:$maincolor;
+				opacity: .3;
+				z-index: 2;
+			}
+		}
+		.four-grid {
+			@media screen and (min-width:$tablet) {
+				width:49%;
+				display: inline-block;
+				// @include margin($small-space-unit/3 0);
+
+			}
+			@media screen and (min-width:$desktop) {
+				width:24.2%;
+				display: inline-block;
+
+			}
+		}
+			.two-third-grid {
+			@media screen and (min-width:$tablet) {
+				width: 64%;
+				// @include padding(0);
+				// @include margin($small-space-unit/2 0);
+			}
+		}
+		.one-third-grid {
+			@media screen and (min-width:$tablet) {
+				width: 34%;
+				// @include margin($small-space-unit/2 0);
+			}
+		}
+		img {
+			min-width: 400px;
+			width:100%;
+			position: relative;
+			overflow: hidden;
+			@include margin(0 auto);
+			@include padding(0);
+			z-index: 1;
+		}
+
+		.feat-title {
+			position: absolute;
+			// top:0;
+
+			bottom:0;
+			left:0;
+			width: 100%;
+			height:50%;
+			display: block;
+			@include font(2.3);
+			line-height: .8em;
+			color:$maincolor;
+			font-weight: $demi;
+			text-align: left;
+			letter-spacing: 1px;
+			@include padding($small-space-unit * 0.5);
+			// @include margin($small-space-unit 0 0 0);
+			z-index: 3;
+	    		@include transition(all 0.4s 0.1s ease-in-out);
+			text-shadow: 4px 4px 2px $shadowcolor;
+
+
+			&:before {
+				content: '';
+				position: absolute;
+				top:0;
+				left:0;
+				width:100%;
+				height:100%;
+				background:$secondcolor;
+				opacity: .4;
+				z-index: -1;
+	    		@include transition(all 0.4s 0.1s ease-in-out);
+
+			}
+		}
+		@media screen and (min-width:$tablet) {
+			.one-third-grid .feat-title {
+				// @include font(3.5);
+			@include padding($small-space-unit * 0.5);
+				
+			}
+		}
+		@media screen and (min-width:$desktop) {
+			.four-grid .feat-title {
+				// @include font(3);
+			
+			}
+		}
+
+	}
+	.reviews {
+		h2 {
+			@include font(3.3);
+			line-height: .7em;
+			font-weight: $bold;
+			@include margin($large-space-unit 5% $large-space-unit * 2);
+
+			@media screen and (min-width:$tablet) {
+			}
+		}
+	}
+	.two-grid:hover {
+		.feat-title {
+			height:100%;
+			// @include font(2);
+			letter-spacing: 3px;
+			line-height:1em;
+			@include padding(40% $small-space-unit * 0.5 $small-space-unit * 0.5 $small-space-unit * 0.5);
+
+    		@include transition(all 0.4s 0.1s ease-in-out);
+
+			&:before {
+				opacity: .7;
+				background:$thirdcolor;
+    			@include transition(all 0.4s 0.1s ease-in-out);
+
+			}
+		}
+	}
+	@media screen and (min-width:$tablet) {
+		.two-grid.two-third-grid:hover {
+			.feat-title {
+				height:100%;
+				// @include font(2);
+				letter-spacing: 3px;
+				line-height:1em;
+				@include padding(30% $small-space-unit * 0.5 $small-space-unit * 0.5 $small-space-unit * 0.5);
+
+	    		@include transition(all 0.4s 0.1s ease-in-out);
+
+				&:before {
+					opacity: .7;
+	    		@include transition(all 0.4s 0.1s ease-in-out);
+
+				}
+			}
+		}
+		.two-grid.one-third-grid:hover {
+			.feat-title {
+				height:100%;
+				// @include font(2);
+				letter-spacing: 3px;
+				line-height:1em;
+				@include padding(48% $small-space-unit * 0.5 $small-space-unit * 0.5 $small-space-unit * 0.5);
+
+	    		@include transition(all 0.4s 0.1s ease-in-out);
+
+				&:before {
+					opacity: .7;
+	    		@include transition(all 0.4s 0.1s ease-in-out);
+
+				}
+			}
+		}
+	}
+
+	@media screen and (min-width:$desktop) {
+		.two-grid.four-grid:hover {
+			.feat-title {
+				height:100%;
+				@include font(2);
+				letter-spacing: 3px;
+				line-height:.8em;
+				@include padding(45% $small-space-unit * .7 0);
+
+	    		@include transition(all 0.4s 0.1s ease-in-out);
+
+				&:before {
+					opacity: .7;
+	    		@include transition(all 0.4s 0.1s ease-in-out);
+
+				}
+			}
+		}
+	}
+
+
+
+
+
+}

@@ -1,0 +1,36 @@
+<% provide(:title, "Edit user") %>
+<h1>Update your profile</h1>
+
+<div class="row">
+  <div class="grid">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, class: "input-reg" %>
+
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, class: "input-reg" %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "input-reg" %>
+
+      <%= f.label :phone, "Phone Number" %>
+      <%= f.text_field :phone, class: "input-reg" %>
+
+      
+      <% if f.object.image? %>
+
+        <%= image_tag f.object.image.thumb.url %>
+        <%= f.label :remove_image %>
+        <%= f.check_box :remove_image %> 
+
+      <% else %>
+
+        <%= f.label :image, "Profile Picture" %>
+        <%= f.file_field :image %>
+      
+      <% end %>
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>

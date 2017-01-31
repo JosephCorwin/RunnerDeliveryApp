@@ -1,0 +1,80 @@
+.faq {
+	width:100%;
+	max-width:$content-width;
+	position: relative;
+	@include margin($large-space-unit*4 auto 0);
+
+	.grid {
+		width: 100%;
+		@include margin($large-space-unit auto);
+		vertical-align: middle;
+		position: relative;
+		overflow: hidden;
+	}
+	img, h2, h3, p, .three-grid {
+		vertical-align: top;
+		width:auto;
+		max-width: 400px;
+		display: block;
+		@include margin($small-space-unit $small-space-unit*1.7 0);
+
+		position: relative;
+		overflow: hidden;
+		@media screen and (min-width:$tablet) {
+			@include margin($small-space-unit 0 0);
+		}
+	}
+	.three-grid {
+		@media screen and (min-width:$tablet) {
+			width:43%;
+			min-height:12em;
+			@include padding(0 1em);
+			display: inline-block;
+			@include margin($large-space-unit * 2 3%);
+
+
+		}
+		@media screen and (min-width:$desktop) {
+			width:30%;
+			display: inline-block;
+			@include margin($large-space-unit 2% $large-space-unit 0);
+
+		}
+	}
+	h2 {
+		@include font(2.7);
+		line-height: .8em;
+		font-weight: $bold;
+		text-align: left;
+		@include margin($small-space-unit auto 0);
+
+		@media screen and (min-width:$tablet) {
+			@include margin($small-space-unit 0 0 5%);
+		}
+		@media screen and (min-width:$desktop) {
+			@include margin($small-space-unit * 2 0 0);
+		}
+	}
+
+
+	h3 {
+		@include font(1.7);
+		line-height: 0.9em;
+		font-weight: $demi;
+		min-height: 2em;
+		display: block;
+		@include margin($large-space-unit * 2 0 $small-space-unit);
+	}
+	
+	p {
+		@include font(1.1);
+		line-height: 1.2em;
+		width: 95%;
+		max-width: 350px;
+		@include margin(0);
+		@media screen and (min-width:$tablet) {
+			@include margin($small-space-unit 0 0);
+		}
+	}
+	
+}

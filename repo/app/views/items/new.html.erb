@@ -1,0 +1,17 @@
+<% provide(:title, "New Item") %>
+
+<h1>Stores#new</h1>
+<%= form_for(@item, url: "new_item/confirmed") do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'input-reg' %>
+
+  <%= f.label :price %>
+  <%= f.number_field :price, value: number_to_currency(f.object.price.to_f, delimiter: '', unit: ''), step: 0.01 %>
+
+  <%= f.label :image %>
+  <%= f.file_field :image, class: 'button' %>
+
+  <%= f.submit "Add this item", class: 'button' %>
+
+<% end %>

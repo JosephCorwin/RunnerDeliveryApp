@@ -1,0 +1,24 @@
+<% provide(:title, "Contact") %>
+
+<div class="contact">
+
+	<div class="grid">
+		
+		<h2 class="title">Contact Us</h2>
+
+      	<%= form_tag(:contact, method: 'post') do %>
+	        <fieldset>
+
+	            <%= text_field_tag  "contact[full_name]", "Your Full Name", class: "input-reg", size: "1x1"  %>
+	            <%= telephone_field :contact, :phone, class: "input-reg", placeholder: "(555) 555-5555"  %>
+	            <%= email_field     :contact, :email, class: "input-reg", placeholder: "user@example.com" %>
+	            <%= text_area_tag   "contact[message]",   "Write a short message here!", class: "large-box", size: "5x5" %>
+
+	            <%= submit_tag "Send", class: "button"  %>  
+	        </fieldset>
+      	<% end %>
+
+      </div>
+	</div>
+
+</div>

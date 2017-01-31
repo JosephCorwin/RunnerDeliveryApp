@@ -1,0 +1,155 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+ul.pagination {
+	z-index: 3;
+	width:98%;
+	// max-width: $tablet;
+	max-width: 800px;
+	display: block;
+	@include margin($large-space-unit*2 auto $large-space-unit);
+	position: relative;
+	overflow: hidden;
+	@include padding(0 $large-space-unit);
+
+	li {
+		display: inline-block;
+		width:17%;
+		@include margin(0 1%);
+		@include padding(0 0 $small-space-unit);
+		text-align:center;
+		@include font(1.2);
+		font-weight: $light;
+		position:relative;
+		overflow: hidden;
+		&.active {
+			font-weight: $bold;
+			&:after {
+				content: '';
+				position: absolute;
+				top:0;
+				left:35%;
+				height:100%;
+				width:30%;
+				// background:$maincolor;
+				opacity: .8;
+				z-index: 0;
+				border-bottom: solid 2px $secondcolor;
+
+			}
+
+
+		}
+	}
+}
+.users {
+	vertical-align: top;
+	z-index: 3;
+	width:98%;
+	// max-width: $tablet;
+	max-width: 800px;
+	display: block;
+	@include margin(0 auto);
+	position: relative;
+	overflow: hidden;
+	@include padding(0 $large-space-unit);
+
+
+
+	.user-box {
+		position: relative;
+		overflow: hidden;
+		display: inline-block;
+		width:100%;
+		min-height: 7em;
+		@include margin($large-space-unit auto);
+		@include padding($large-space-unit);
+		border-bottom: solid 2px $secondcolor;
+		border-top: solid 2px $secondcolor;
+		box-shadow:0px 8px 5px -5px $shadowcolor;
+		@include transition(all 0.3s 0.2s ease);
+
+		.user-name {
+			@include font(1);
+			line-height: 1.1em;
+			font-weight: $bold;
+			color:$secondcolor;
+			text-shadow: 1px 1px 1px $maincolor;
+			// color:$color;
+			text-align: left;
+			width:80%;
+			@include margin(0 0 $small-space-unit);
+			@include padding(0);
+			overflow: hidden;
+			position: relative;
+			z-index: 3;
+		}
+
+		.button {
+			@include font(1);
+			@include padding(0.5em);
+			position: absolute;
+			bottom:0.1em;
+			right:1em;
+		}
+
+	}
+	h2 {
+		font-family: $font;
+		font-weight: $demi;
+		@include font(3);
+		@include margin($large-space-unit 0);
+	}
+
+	.reset {
+		@include gradient($errorcolor1,$errorcolor2);
+		@include font(1);
+		font-weight: $light;
+		border-color: $secondcolor;
+		color:$maincolor;
+	}
+
+	@media screen and (min-width:$tablet) {
+		@include margin($large-space-unit*2 auto);
+
+		.user-box {
+			width:45%;
+			@include margin(0 2% $large-space-unit*2);
+			border: solid 2px $secondcolor;
+    		border-radius:$small-space-unit/2;
+			box-shadow:4px 4px 5px -2px $shadowcolor;
+
+
+
+		}
+	}
+	@media screen and (min-width:$desktop) {
+
+		.user-box {
+			width:31%;
+			@include margin(0 1% $large-space-unit*2);
+			border: solid 2px $secondcolor;
+
+
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

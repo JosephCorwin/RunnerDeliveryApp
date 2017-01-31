@@ -1,0 +1,293 @@
+.login, .new-user,
+.edit-user {
+	width:100%;
+	max-width:$content-width;
+	position: relative;
+	@include margin(0 auto);
+	@include padding($large-space-unit*2 0);
+	
+	.litte-help {
+		display: block;
+	}
+
+
+	.grid {
+		width: 80%;
+		max-width: 330px;
+		@include margin($large-space-unit auto);
+		vertical-align: middle;
+		position: relative;
+		overflow: hidden;
+		z-index: 2;
+	}
+	img, label, p, h2, h3, .input-reg, fieldset{
+		vertical-align: top;
+		width:95%;
+		max-width: 400px;
+		display: block;
+		@include margin($small-space-unit auto 0);
+		position: relative;
+		overflow: hidden;
+		@include padding($large-space-unit);
+		@media screen and (min-width:$tablet) {
+			@include margin($small-space-unit 0 0);
+		}
+	}
+
+	.button {
+		float: right;
+		@include margin($large-space-unit*1.5 5%);
+		@include padding($small-space-unit $large-space-unit);
+		clear:left;
+
+		&.sign-up {
+			@include padding($small-space-unit);
+			@include gradient(white,$maincolor);
+			@include margin($small-space-unit 0);
+			float:none;
+			@include font(0.8);
+			display: block;
+			// vertical-align: top;
+		}
+	}
+
+
+	a {
+		color:$highlightcolor2;
+		color:$thirdcolor;
+		text-shadow: 1px 1px 1px $shadowcolor;
+		opacity: 0.8;
+		font-weight: $bold;
+
+	}
+	label {
+		@include font(1.1);
+		font-family: $font;
+		line-height: 1em;
+		font-weight: $light;
+		text-align: left;
+		@include margin(0 1%);
+		@include padding(0);
+	}
+	form {
+		@include margin($large-space-unit 0);
+	}
+	.input-reg, {
+		@include margin($large-space-unit*1.5 0);
+		@include padding($small-space-unit*1.5);
+		border: solid 2px $secondcolor;
+    	border-radius:$small-space-unit/2;
+		box-shadow:3px 3px 6px $shadowcolor;
+        font-family: $font;
+        font-weight: $med;
+        @include font(1);
+        line-height:1.1em;
+        opacity: .5;
+        @include transition(opacity 0.3s 0s linear);
+
+
+        &:focus {
+            opacity: 1;
+            @include transition(opacity 0.3s 0s linear);
+        }
+    }
+
+
+
+    ::-webkit-input-placeholder {
+       color: $secondcolor;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+       color: $secondcolor;  
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+       color: $secondcolor;  
+    }
+
+    :-ms-input-placeholder {  
+       color: $secondcolor;  
+    }
+	h2 {
+		@include font(2.7);
+		line-height: 1.2em;
+		font-weight: $light;
+		text-align: left;
+		@include margin($large-space-unit auto 0);
+		@include padding(0);
+		overflow: hidden;
+		position: relative;
+		width:80%;
+
+		@media screen and (min-width:$tablet) {
+			// @include margin($large-space-unit * 3 auto 0);
+			width:400px;
+		}
+		// @media screen and (min-width:$desktop) {
+		// 	@include margin($large-space-unit * 4 0 0);
+		// }
+	}
+
+	h4 {
+		@include font(1.7);
+		line-height: 1.2em;
+		font-weight: $light;
+		text-align: left;
+		@include margin(0 auto);
+		@include padding(0);
+		overflow: hidden;
+		position: relative;
+
+		width:80%;
+
+		@media screen and (min-width:$tablet) {
+			// @include margin($large-space-unit * 3 auto 0);
+			width:400px;
+		}
+		// @media screen and (min-width:$desktop) {
+		// 	@include margin($large-space-unit * 4 0 0);
+		// }
+	}
+	// h3 {
+	// 	@include font(1.7);
+	// 	line-height: 0.9em;
+	// 	font-weight: $demi;
+	// 	min-height: 2em;
+	// 	display: block;
+	// 	@include margin($large-space-unit * 2 0 $small-space-unit);
+	// }
+	
+	p {
+		@include font(1.1);
+		line-height: 1.2em;
+		width: 95%;
+		max-width: 350px;
+		@include margin(0);
+		@media screen and (min-width:$tablet) {
+			@include margin($small-space-unit 0 0);
+		}
+	}
+	
+}
+
+
+
+
+.new-user {
+	label, h2, h4 {
+		color:$maincolor;
+	}
+
+	h4 {
+
+	}
+	&:before {
+		content: '';
+		position: absolute;
+		top:0;
+		left:0;
+		height:100%;
+		width:100%;
+		background:url('logos/snowy-st.jpg');
+		background-repeat:no-repeat;
+		background-size:cover;
+		background-position:center;
+		opacity: 0.8;
+		z-index: -1;
+	}
+	&:after {
+		content: '';
+		position: absolute;
+		top:0;
+		left:0;
+		height:100%;
+		width:100%;
+		background:$thirdcolor;
+		opacity: .6;
+		z-index: -1;
+	}
+	.grid {
+		width:80%;
+		max-width: 400px;
+		// @media screen and(min-width:$tablet) {
+		// 	max-width: 800px;
+		// }
+	}
+	.input-reg {
+		border: solid 2px $thirdcolor;
+	}
+	.button {
+		@include font(1);
+		overflow-wrap: normal;
+		@include margin(0 5% $small-space-unit);
+		max-width: 300px;
+		width:50%;
+	}
+
+}
+
+
+
+
+.edit-user {
+	label, h2, h4 {
+		color:$maincolor;
+	}
+
+	h4 {
+
+	}
+	&:before {
+		content: '';
+		position: absolute;
+		top:0;
+		left:0;
+		height:100%;
+		width:100%;
+		background:url('logos/iStock_000031560926_Small.jpg');
+		background-repeat:no-repeat;
+		background-size:cover;
+		background-position:center;
+		opacity: 0.8;
+		z-index: -1;
+	}
+	&:after {
+		content: '';
+		position: absolute;
+		top:0;
+		left:0;
+		height:100%;
+		width:100%;
+		background:$thirdcolor;
+		opacity: .6;
+		z-index: -1;
+	}
+	.grid {
+		width:80%;
+		max-width: 400px;
+		// @media screen and(min-width:$tablet) {
+		// 	max-width: 800px;
+		// }
+	}
+	.input-reg {
+		border: solid 2px $thirdcolor;
+	}
+	.button {
+		@include font(1);
+		overflow-wrap: normal;
+		@include margin(0 5% $small-space-unit);
+		max-width: 300px;
+		width:50%;
+	}
+
+}
+
+
+
+
+
+
+
+
+

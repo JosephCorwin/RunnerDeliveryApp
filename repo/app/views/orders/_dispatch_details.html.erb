@@ -1,0 +1,72 @@
+<div class="order-details">
+	<div class="sub-details ">
+		<h4>Order for:</h4> 
+		<span class="cust-name">
+		  <%= @order.customer.user.full_name %>
+		</span>
+	</div>
+
+	<div class="sub-details ">
+		<h4>Assigned to: </h4>
+		<span class="runn-name">
+		  <%= @order.runner.user.full_name %>
+		</span>
+	</div>
+
+	<div class="sub-details ">
+		<h4>What they want:</h4>
+		<span class="cust-order">
+			<%= @order.what_they_want %>		
+		</span>
+	</div>
+
+	<div class="sub-details ">
+		<h4>When they ordered it:</h4>
+		<span class="order-time">
+			<%= @order.created_at.to_formatted_s(:short) %>		
+		</span>
+	</div>
+
+	<div class="sub-details ">
+		<h4>Where they want it brought:</h4>
+		<span class="dropoff-spot">
+			<%= @order.where_it_goes %>		
+		</span>
+	</div>
+
+	<div class="sub-details ">
+		<h4>From whence this should be bought:</h4>
+		<span class="pickup-spot">
+			<%= @order.where_to_get? ? @order.where_to_get : "Needs Assignment" %>		
+		</span>
+	</div>
+
+	<div class="sub-details ">
+		<h4>Has it been purchased yet?</h4>
+		<span class="status">
+			<%= @order.progressed? ? "Yes" : "No" %>		
+		</span>
+	</div>
+
+    <div class="sub-details">
+    	<h4>When was it purchased?</h4>
+    	<span class="pickup-time">
+    		<%= @order.time_obtained ? @order.time_obtained : "N/A" %>
+    	</span>
+    </div>
+
+	<div class="sub-details ">
+		<h4>Has it been delivered yet?</h4>
+		<span class="status">
+			<%= @order.finished? ? "Yes" : "No" %>		
+		</span>
+	</div>
+
+	<div class="sub-details">
+    	<h4>When was it delivered?</h4>
+    	<span class="dropoff-time">
+    		<%= @order.time_delivered ? @order.time_delivered : "N/A" %>
+    	</span>
+    </div>
+
+</div>

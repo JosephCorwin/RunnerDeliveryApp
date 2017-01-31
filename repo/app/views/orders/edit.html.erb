@@ -1,0 +1,56 @@
+<% provide(:title, "Assign a runner") %>
+<div class="orders">
+  <div class="row">
+    <div class="grid">
+      
+<div class="orders">
+
+<div class="order-details">
+  <div class="sub-details ">
+    <h4>Order for:</h4> 
+    <span class="cust-name">
+      <%= @order.customer.user.full_name %>
+    </span>
+  </div>
+
+  <div class="sub-details ">
+    <h4>Assigned to:</h4>
+    <span class="runn-name">
+      <%= @order.runner.user.full_name %>
+    </span>
+  </div>
+
+  <div class="sub-details ">
+    <h4>What they want:</h4>
+    <span class="cust-order">
+      <%= @order.what_they_want %>    
+    </span>
+  </div>
+
+  <div class="sub-details ">
+    <h4>When they ordered it:</h4>
+    <span class="order-time">
+      <%= @order.created_at.to_formatted_s(:short) %>   
+    </span>
+  </div>
+
+  <div class="sub-details ">
+    <h4>Where they want it brought:</h4>
+    <span class="dropoff-spot">
+      <%= @order.where_it_goes %>   
+    </span>
+  </div>
+</div>      
+      <%= form_for(@order) do |f|%>
+      
+        <%= f.label :runner_id, "Who should take this" %>
+      
+        <%= select(:order, :runner_id, Runner.joins(:user).where(:users => {:status => 'runn'}).collect { |r| [r.user.email, r.id] }) %>
+        <%= f.label :where_to_get, "This can be obtained from" %>
+        <%= f.text_area :where_to_get, placeholder: "Be specific" %>
+      
+        <%= f.submit "Dispatch!", class: 'button' %>
+      <% end %>
+    </div>
+  </div>
+</div>

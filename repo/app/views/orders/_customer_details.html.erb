@@ -1,0 +1,22 @@
+<div class="order-details">
+	<span class="sub-details">
+		<h4>Order for:</h4> 
+		<span class="cust-name"><%= @order.customer.user.full_name %>
+		</span>
+	</span>
+
+	<span class="sub-details">
+		<h4>Assigned to: </h4>
+		<span class="runner-name">
+		  <%= @order.runner.user.full_name %>
+		</span>
+	</span>
+
+	<span class="sub-details">
+		<h4>What they want:</h4>
+		<span class="cust-order">
+			<%= @order.what_they_want %>		
+		</span>
+	</span>
+
+</div>

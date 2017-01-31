@@ -1,0 +1,447 @@
+body,
+*,
+*:after,
+*:before  {
+  box-sizing:border-box;
+}
+
+body {
+    position: relative;
+    width: 100%;
+    // height:100%;
+    @include gradient(white,$maincolor);
+    // @include gradient(white,black);
+    &.lock {
+    	position: fixed;
+    }
+}
+
+a:link,
+a:visited, 
+a:hover, 
+a:active, 
+a:focus {
+	text-decoration:none;
+	color:$secondcolor;
+
+}
+
+a,h1,h2,h3,h4,h4,p,span,ul,ol,li,input,textarea,label {
+	font-family:$font;
+	@include font(1);
+	color:$secondcolor;
+}
+
+.button,
+a.button, 
+button.button {
+	position: relative;
+	overflow: hidden;
+	max-width: 200px;
+	width:40%;
+	display: block;
+	text-align:center;
+	@include margin($large-space-unit 0);
+	@include padding($large-space-unit*0.7);
+    // @include gradient(white,$maincolor);
+    @include font(1.3);
+    line-height: 1em;
+    // letter-spacing: 2px;
+    font-weight:$demi;
+    border: solid 2px $thirdcolor;
+    border-radius:$small-space-unit/2;
+	box-shadow:3px 3px 6px $shadowcolor;
+
+	color:$thirdcolor;
+	text-shadow: 1px 1px 0 rgba(255,255,255,0.2);
+	@include gradient($highlightcolor,$highlightcolor2);
+	opacity:0.8;
+
+	@include transition(all 0.3s ease);
+
+	&:hover {
+		box-shadow:1px 1px 4px $shadowcolor;
+		@include transition(all 0.3s ease);
+		opacity: 1;
+	}
+}
+
+
+.site-title {
+	@include padding($small-space-unit * 2);
+	position: relative;
+	display: block;
+	@include font(0.8);
+	width: 15%;
+
+
+	&.footer-title {
+		@include font(0.3);
+	}
+		
+	.top, .bottom {
+		font-family: $font;
+		position: relative;
+		display: block;
+		line-height: 0.75em;
+	}
+
+	.top {
+		font-weight: $demi;
+		color:$secondcolor;
+		@include font(2.85);
+		@include margin(0 auto);
+	}
+
+	.bottom {
+		font-weight: $light;
+		color:$secondcolor;
+		@include font(1.8);
+		opacity: .8;
+		letter-spacing: 2px;	
+		@include margin(0 1px);
+	}
+	
+	@media screen and (min-width:$tablet) {
+		display: none;
+		&.footer-title {
+			display: block;
+		}
+	}	
+
+}
+
+
+.soften {
+	opacity:0.8;
+}
+
+
+	.alert {
+		position: relative;
+		font-family: $font;
+		font-weight: $med;
+		overflow: hidden;
+		@include font(2);
+		text-align:center;
+		@include padding($large-space-unit);
+		color:$thirdcolor;
+	}
+//==================================================
+//==================================================
+					// Header
+//==================================================
+//==================================================
+.page-content {
+	position: relative;
+	overflow: hidden;
+	width:auto;
+	max-width:$content-width;
+	@include margin($large-space-unit*2 $small-space-unit*1.7 0);
+	@media screen and (min-width:$tablet) {
+		@include margin(0 auto);
+		@include padding(0 $small-space-unit);
+
+	}
+	.post {
+		@include padding(0);
+		@include margin(0);
+	}
+}
+.site-header {
+	position:fixed;
+	top:0;
+	min-height:0;
+    @include gradient(white,$maincolor);
+	width:100%;
+	max-width:$content-width;
+	@include margin(0 auto);
+	z-index:3;
+	@include font(0.8);
+	@media screen and (min-width:$tablet) {
+		background:transparent;
+		position: relative;
+		overflow:hidden;
+		width: 100%;
+		// min-height:1em;
+	}
+
+	.divider {
+		height:1px;
+		position: relative;
+		background: $secondcolor;
+		overflow:hidden;
+		@include padding(0);
+		@include margin(0 $small-space-unit * 2);
+		clear:both;
+		@media screen and (min-width:$tablet) {
+			@include margin(0 $small-space-unit);
+		}
+	}	
+
+
+	
+	.menu-icon {
+		@include transform(rotate(-73deg));
+		@include font(2.3);
+		letter-spacing: -1px;
+		line-height: 1em;
+		font-weight: $heavy;
+		color:$secondcolor;
+		position: absolute;
+		top: $small-space-unit * 1.2;
+		right:$small-space-unit * 1.5;
+
+		@include transition(all 0.4s ease);
+		cursor: pointer;
+
+
+		&.rotate {
+			@include transform(rotate(110deg));
+			letter-spacing: -10px;
+			font-weight: $light;
+			// top:$large-space-unit;
+			right:$large-space-unit*1.1;
+
+
+		}
+
+		@media screen and (min-width:$tablet) {
+			display: none;
+		}
+	}
+
+	.trigger {
+		width: 100%;
+		position: fixed;
+		overflow: hidden;
+		@include padding($small-space-unit/2);
+	    opacity:0;
+	    height:0;
+	    top:4.4em;
+	    z-index: 100;
+	    background:transparent;
+		vertical-align: top;
+	   	transition: all 0.2s linear;
+
+
+		@media screen and (min-width:$tablet) {
+			position: relative;
+			top:0;
+	    	transition: all 0.5s linear;
+			@include margin($large-space-unit 0);
+			@include padding($small-space-unit $large-space-unit * 2 0);
+			// min-height:5em;
+			height:auto;
+			opacity: 1;
+			clear:both;
+		}
+		@media screen and (min-width:$desktop) {
+	    	transition: all 0.5s linear;
+			@include padding($small-space-unit $small-space-unit 0 $small-space-unit);
+
+
+		}
+		.login, 
+		.page-link {
+			font-family: $font;
+			display: inline-block;
+			text-align: center;
+			@include padding($large-space-unit * 2 0);
+
+			
+		}
+
+		.secondary-nav {
+			display: block;
+			position: relative;
+			overflow: hidden;
+			z-index: 100;
+			width:100%;
+			@include margin($large-space-unit 0 0);
+			@include padding($large-space-unit 0 0);
+			border-top:2px solid $secondcolor;
+		}
+		.page-link {
+			@include font(1.6);
+			font-weight: $med;
+			width:45%;
+			// width: 100%;
+			@include margin(2.2%);
+    		// @include gradient(white,$fourthcolor);
+    		@include gradient(white,$maincolor);
+    		border: solid 2px $shadowcolor;
+    		letter-spacing: 2.5px;
+    		text-align: center;
+    		// opacity: .8;
+
+    		@media screen and (min-width:$tablet) {
+    			// opacity: 1;
+    			@include font(1.2);
+    			@include margin(0 4% 0 0);
+				@include padding(0);
+				text-align: left;
+				background:transparent;
+				border:none;
+				width:15%;
+				font-weight: $med;
+				// transition: none;
+
+			}
+		}
+		&.expand {
+			height:100vh;
+			opacity: 1;
+	    	transition: all 0.5s linear;
+    		@include gradient(white,$maincolor);
+
+    		z-index: 10000;
+
+	    	// }
+	    	
+		}
+
+		.login-items {
+			width:100%;
+			// float:right:
+			position: relative;
+			overflow: hidden;
+			@media screen and (min-width:$tablet) {
+				// width:20%;
+				@include font(.7);
+				@include margin(0);
+				@include padding(0);
+				width: 18%;
+				position: absolute;
+				top:$small-space-unit;
+				right:0;
+			}
+			span {
+				font-family: $font;
+				color:$thirdcolor;
+				font-weight: $med;
+				@include margin(0);
+				@include font(2);
+				display: inline-block;
+			}
+		}
+		.login,
+		.acct-link {
+			font-weight: $demi;
+			@include font(1.3);
+			opacity: .7;
+			letter-spacing: 2px;
+			text-transform: uppercase;
+			width: 48%;
+			max-width: 70px;
+			text-align:right;
+			float:right;
+			display: inline-block;
+			@include margin(0);
+			@include padding($small-space-unit);
+		}
+
+		.login {
+			text-align:left;
+		}
+		.acct-link {
+			float:left;
+		}
+		// .acct-link {
+		// 	position: absolute;
+		// 	top:0.5em;
+		// 	right:6em;
+		// }
+		.sub {
+			width:100%;
+			@include margin(0 auto);
+			@include padding($small-space-unit 0 0);
+			.sub-header {
+				width:50%;
+				max-width: 200px;
+				@include font(1);
+				color:$secondcolor;
+				display: block;
+				@include margin($small-space-unit 5% 0);
+					vertical-align: top;
+
+			}
+			.bus-phone {
+				width:50%;
+				max-width: 200px;
+				@include font(2);
+				color:$secondcolor;
+				display: block;
+				@include margin(0 5% $small-space-unit);
+			}
+
+			ul {
+				clear:both;
+				width:90%;
+				@include margin($large-space-unit*3 5% 0);
+				@include padding(0);
+				text-align:center;
+				display: block;
+
+				@media screen and (min-width:$tablet) {
+					width:50%;
+					float:right;
+					clear:right;
+					display:inline-block;
+					vertical-align: top;
+					@include margin(-3em 5% 0);
+				}
+				li {
+					display: inline-block;
+					width:32.5%;
+					vertical-align: top;
+
+					a {
+						width:100%;
+						@include font(1);
+						letter-spacing: 2px;
+						color:$thirdcolor;
+						text-align:center;
+						line-height: 1em;
+						background:transparent;
+						// @include gradient(transparent,transparent);
+
+						@include padding(1em 0);
+						@include transition(all 0.3s ease);
+
+						&:hover {
+							// @include gradient($highlightcolor,$highlightcolor2);
+							@include font(1.2);
+							line-height: 1em;
+							@include padding(0);
+							@include transition(all 0.5s ease);
+
+							letter-spacing: 3px;
+						}
+					}
+				}
+			}
+
+		}
+	}
+}
+
+
+
+footer {
+	// height:5em;
+	@include padding(0);
+	@include margin($small-space-unit auto);
+	text-align:center;
+	@include font(2.2);
+
+	width:100%;
+	max-width:$content-width;
+
+	.contact-list {
+		// @include font(0.5);
+	}
+}
+
+
+

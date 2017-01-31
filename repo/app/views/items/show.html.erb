@@ -1,0 +1,5 @@
+<% provide(:title, "#{@item.name}") %>
+<h1><%= @item.name %></h1>
+<%= image_tag @item.image.url %>
+<p><% @item.description %><p>
+<p><% @item.price %>

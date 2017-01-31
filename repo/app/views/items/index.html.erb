@@ -1,0 +1,11 @@
+<% provide(:title, "Items Index") %>
+
+<% will_paginate %>
+
+<ol>
+<% @items.each do |i| %>
+<li><%= link_to "#{i.name}", i, class: "line-item" %>
+<% end %>
+</ol>
+
+<% will_paginate %>

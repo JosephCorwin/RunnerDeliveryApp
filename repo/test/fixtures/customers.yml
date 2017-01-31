@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+michael:
+  user: michael
+
+archer:
+  user: archer
+
+clark:
+  user: clark
+
+boss:
+  user: boss

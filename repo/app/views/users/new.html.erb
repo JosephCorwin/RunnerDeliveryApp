@@ -1,0 +1,36 @@
+<% provide(:title, 'Sign up') %>
+
+<div class="new-user">
+
+<h2>Sign up</h2>
+
+<div class="row">
+  <div class="grid">
+    <%= form_for(@user, url: signup_path) do |f| %>
+     
+      <%= render 'shared/error_messages' %>
+      
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, class: "input-reg" %>
+
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, class: "input-reg" %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: "input-reg" %>
+
+      <%= f.label :phone, "Phone Number" %>
+      <%= f.text_field :phone, class: "input-reg" %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: "input-reg" %>
+
+      <%= f.label :password_confirmation, "Retype your password" %>
+      <%= f.password_field :password_confirmation, class: "input-reg" %>
+      
+      <%= f.submit "Create my account", class: "button" %>
+    <% end %>
+  </div>
+</div>
+
+</div>

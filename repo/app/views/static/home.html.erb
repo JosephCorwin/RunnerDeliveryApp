@@ -1,0 +1,120 @@
+<%= provide(:title, "Home") %>
+<div class="home">
+  <div class="hero">
+  
+    <% if current_user %>
+      <div class="two-grid">
+        <h2> Welcome, <%= @current_user.first_name %>!</h2>
+        <%= link_to "Place an Order", new_order_path, class: 'button' %>
+        <%= link_to "Edit Your Account", edit_user_path(@current_user), class: 'button'%>
+      </div>
+      <div class="two-grid">
+        <%= image_tag @current_user.image.url %>
+        <ul class="user-info">
+          <li>Your email: <span><%= @current_user.email %></span></li>
+          <li>Your phone: <span><%= @current_user.phone %></span></li>
+        </ul>
+      </div>
+
+  </div>
+
+      <% if you_running? %>
+
+        <%= link_to "Orders", "orders/assigned" %>
+
+      <% elsif you_dispatch? %>
+          <%= link_to "Orders", orders_path %>
+      <% elsif you_da_boss? %>
+         <ol>
+           <li><%= link_to "Users",  users_path  %></li>
+           <li><%= link_to "Orders", orders_path %></li>
+           <li><%= link_to "Stores", stores_path %></li>
+           <li><%= link_to "Items",  items_path  %></li>
+         <ol>
+
+      <% end %>
+      
+    <% else %>
+
+
+    <div class="two-grid">
+      <%= image_tag("logos/logo.png", alt: "Logo for Runner Deliver", class: "hero-logo") %>   
+    </div>
+    <div class="two-grid">
+      <h2>Runner is a food delivery & all purpose courier service!</h2>   
+      <%= link_to "Get Started!", signup_path, class: 'button signup' %>
+    </div>
+
+
+    <div id="scroll-1" class="scroll-button">
+      <%= image_tag("logos/arrow-down.svg", alt: "scroll down arrow") %>   
+
+      <span>scroll</span>
+    </div>
+
+  </div>
+
+  <div id="anchor-1" class="mini-about">
+   
+    <div class="two-grid two-third-grid"> 
+      <h3 >How it works!</h3>
+
+      <p>You can choose from our featured businesses or create a custom order! We encourage you to personalize your order to make sure that it's EXACTLY what you want!</p>
+
+
+      <%= link_to "More FAQ's", faq_path, class: 'button' %>
+
+
+    </div>
+    <div class="two-grid one-third-grid">
+      <div class="advert bg-1">
+        
+        <h4>Order $50 or more from</h4>
+        <h2>DK Sushi</h2>
+        <h4>And get a Free Appetizer!</h4>
+
+        <span>Valid until Jan. 31, 2017</span>
+        
+      </div>
+      <div class="advert bg-2">
+        
+        <h4>Don't waste Study Time on food runs.</h4>
+        <h2>Bob's Groceries</h2>
+        <h4>Is covering your delivery fee!</h4>
+
+        <span>Valid until Jan. 31, 2017</span>
+        
+      </div>
+
+    </div>
+
+    <div id="scroll-2" class="scroll-button">
+      <%= image_tag("logos/arrow-down.svg", alt: "scroll down arrow") %>   
+
+      <span>scroll</span>
+    </div>
+    
+  </div>
+<!-- <div id="grid" class="features">
+
+    {% assign sorted = (site.features | sort: 'random') %}
+    {% for features in sorted limit:12  %}
+
+    <a href="{{ features.url | prepend: site.baseurl }}" class="two-grid">
+      <img class="feat-img" src="{{ site.baseurl }}{{ features.image }}" alt="feature img"> 
+      <h4 class="feat-title">{{ features.title }}</h4>
+    </a>  
+    {% endfor %}
+
+
+  </div> -->
+  
+
+<!--   <div class="reviews">
+    <h2>Reviews</h2>
+  </div> -->
+
+
+  
+</div>
+    <% end %>

@@ -1,0 +1,330 @@
+.order {
+	position: relative;
+	width:100%;
+	overflow:hidden;
+	max-width:$content-width;
+
+	.four-grid {
+		// @media screen and (min-width:$tablet) {
+			width:49.38%;
+			display: inline-block;
+			@include margin($small-space-unit/3 0);
+
+		// }
+		@media screen and (min-width:$tablet) {
+			width:49.6%;
+			display: inline-block;
+
+		}
+		@media screen and (min-width:$desktop) {
+			width:24.6%;
+			display: inline-block;
+
+		}
+	}
+	.two-third-grid {
+		@media screen and (min-width:$tablet) {
+			width: 65%;
+			@include padding(0);
+			@include margin($small-space-unit/2 0);
+		}
+	}
+	.one-third-grid {
+		@media screen and (min-width:$tablet) {
+			width: 34%;
+			@include margin($small-space-unit/2 0);
+		}
+	}
+	.hero {
+		width:100%;
+		position: relative;
+		// @include margin($small-space-unit auto);
+		@include margin(0 auto);
+		// @include padding($large-space-unit * 3 0);
+		@include padding(0);
+		overflow: hidden;
+		z-index: 1;
+		&:before {
+			content: '';
+			position: absolute;
+			top:0;
+			left:0;
+			height:100%;
+			width:100%;
+			background:url('http://betta.design/runner/img/logos/shopping-cart.jpg');
+			background-repeat:no-repeat;
+			background-size:cover;
+			background-position:center; 
+			opacity: 1;
+			z-index: -1;
+		}
+		&:after {
+			content: '';
+			position: absolute;
+			top:0;
+			left:0;
+			height:100%;
+			width:100%;
+			background:$maincolor;
+			opacity: .8;
+			z-index: 0;
+		}
+		h2 {
+			color:$secondcolor;
+			text-align: left;
+			width:80%;
+			// @include padding($small-space-unit);
+			overflow: hidden;
+			position: relative;
+			z-index: 3;
+			@include font(2.3);
+			line-height: 0.9em;
+			font-weight: $demi;
+			min-height: 2em;
+			letter-spacing: 2px;
+			display: block;
+			@include margin(0);
+			text-shadow: 1px 1px 1px $maincolor;
+
+
+		}
+		label {
+			@include font(1.4);
+			line-height: 1.1em;
+			font-weight: $bold;
+			color:$secondcolor;
+			text-shadow: 1px 1px 1px $maincolor;
+			// color:$color;
+			text-align: left;
+			width:80%;
+			@include margin(0 0 $small-space-unit);
+			@include padding(0);
+			overflow: hidden;
+			position: relative;
+			z-index: 3;
+		}
+		.two-grid {
+			max-height: 20em;
+			@include padding($small-space-unit);
+			&:after {
+
+				background:transparent;
+
+			}
+		}
+	}
+	form {
+		vertical-align: top;
+		z-index: 3;
+		width:98%;
+		// max-width: $tablet;
+		max-width: 420px;
+		display: block;
+		@include margin(0 auto);
+		position: relative;
+		overflow: hidden;
+		@include padding(0 $large-space-unit);
+		@media screen and (min-width:$tablet) {
+			@include margin($large-space-unit*5 auto);
+		}
+	}
+	p, .input-reg, .large-box {
+		vertical-align: top;
+		z-index: 3;
+		width:95%;
+		max-width: 400px;
+
+		display: block;
+		@include margin($small-space-unit auto 0);
+		position: relative;
+		overflow: hidden;
+		@include padding($large-space-unit);
+		@media screen and (min-width:$tablet) {
+			@include margin($small-space-unit 0 0);
+		}
+	}
+
+	.button {
+		float: right;
+		@include margin($large-space-unit 5%);
+		// @include padding($small-space-unit $large-space-unit);
+		// clear:both;
+	}
+
+	.input-reg, .large-box {
+		@include margin($large-space-unit 0);
+		@include padding($small-space-unit*1.5);
+		border: solid 2px $secondcolor;
+    	border-radius:$small-space-unit/2;
+		box-shadow:3px 3px 6px $shadowcolor;
+        font-family: $font;
+        font-weight: $med;
+        @include font(1);
+        line-height:1.1em;
+        opacity: .5;
+        @include transition(opacity 0.3s 0s linear);
+
+
+        &:focus {
+            opacity: 1;
+            @include transition(opacity 0.3s 0s linear);
+        }
+    }
+
+    .large-box {
+    	min-height: 10em;
+    }
+    ::-webkit-input-placeholder {
+       color: $secondcolor;
+    }
+
+    :-moz-placeholder { /* Firefox 18- */
+       color: $secondcolor;  
+    }
+
+    ::-moz-placeholder {  /* Firefox 19+ */
+       color: $secondcolor;  
+    }
+
+    :-ms-input-placeholder {  
+       color: $secondcolor;  
+    }
+	.features {
+		// @include padding($small-space-unit);
+		width: 100%;
+		@include margin(0 auto);
+		position: relative;
+
+		img {
+			min-width: 400px;
+			position: relative;
+			overflow: hidden;
+			@include margin(0 auto);
+			z-index: 1;
+		}
+
+		.feat-title {
+			position: absolute;
+			bottom:0;
+			left:0;
+			width: 100%;
+			height:50%;
+			display: block;
+			@include font(1.5);
+			line-height: 0.9em;
+			color:$maincolor;
+			font-weight: $heavy;
+			text-align: left;
+			letter-spacing: 1px;
+			@include padding($small-space-unit * 0.5);
+			z-index: 3;
+        		@include transition(all 0.4s 0.1s ease-in-out);
+
+			// &:hover {
+			// 	height:100%;
+			// 	@include font(3);
+			// 	letter-spacing: 5px;
+   //      		@include transition(all 0.4s 0.1s ease-in-out);
+
+			// 	&:before {
+			// 		opacity: .7;
+   //      		@include transition(all 0.4s 0.1s ease-in-out);
+
+			// 	}
+			// }
+			&:before {
+				content: '';
+				position: absolute;
+				top:0;
+				left:0;
+				width:100%;
+				height:100%;
+				background:$secondcolor;
+				opacity: .4;
+				z-index: -1;
+        		@include transition(all 0.3s 0s linear);
+
+			}
+		}
+		@media screen and (min-width:$tablet) {
+			.two-grid .feat-title {
+				@include font(2.3);
+				font-weight: $bold;
+				@include padding($small-space-unit * 0.5);
+			}
+		}
+		@media screen and (min-width:$desktop) {
+			.four-grid .feat-title {
+				@include font(2);
+				// @include padding($small-space-unit* 2);
+			}
+		}
+		.two-grid.four-grid:hover {
+			.feat-title {
+				height:100%;
+				// @include font(2);
+				letter-spacing: 3px;
+				line-height:.8em;
+				@include padding(60% $small-space-unit * 0.5 $small-space-unit * 0.5 $small-space-unit * 0.5);
+	    		@include transition(all 0.4s 0.1s ease-in-out);
+
+	    		@media screen and (min-width:$tablet) {
+					@include padding(45% $small-space-unit * 0.5 $small-space-unit * 0.5 $small-space-unit * 0.5);
+
+	    		}
+
+				&:before {
+					opacity: .7;
+	    		@include transition(all 0.4s 0.1s ease-in-out);
+
+				}
+			}
+		}
+
+	}
+}
+
+.order-sent {
+	width:100%;
+	max-width:400px;
+	@include margin(0 auto);
+	@include padding(1em $large-space-unit);	
+	img {
+		width:90%;
+		max-width: 400px;
+		@include margin($large-space-unit*2 auto $small-space-unit);
+		display: block;
+	}
+	h2 {
+		width:90%;
+		font-family:$font;
+		@include font(3);
+		color:$secondcolor;
+		font-weight: $bold;
+		@include margin($small-space-unit auto $small-space-unit);
+	}
+	p {
+		width:90%;
+		font-family:$font;
+		@include font(2);
+		color:$secondcolor;
+		font-weight: $med;
+		@include margin($small-space-unit auto);
+	}
+	.button {
+		@include margin($small-space-unit 5%);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

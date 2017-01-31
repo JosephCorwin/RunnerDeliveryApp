@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+Store_1:
+  name: Test_store_1 
+  addr_no: 1234
+
+Store_2:
+  name: Test_store_2
+  addr_no: 2345

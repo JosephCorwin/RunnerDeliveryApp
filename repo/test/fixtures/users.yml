@@ -1,0 +1,65 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+#customer
+michael:
+  first_name:      Michael
+  last_name:       Example
+  email:           michael@example.com
+  phone:           1234567890
+  password_digest: <%= User.digest('password') %>
+  reset_digest:    nil
+  status:          good
+  activated:       true
+  activated_at:    <%= Time.zone.now %>
+
+#jerk
+archer:
+  first_name:      Sterling 
+  last_name:       Archer
+  email:           duchess@example.com
+  phone:           1234567890
+  password_digest: <%= User.digest('password') %>
+  status:          good
+  activated:       true
+  activated_at:    <%= Time.zone.now %>
+
+#new guy
+clark:
+  first_name:      Clark
+  last_name:       Kent
+  email:           notsosuper@example.com
+  phone:           1234567890
+  password_digest: <%= User.digest('password') %>
+  status:          news
+
+#runners
+flash:
+  first_name:      Flashy
+  last_name:       McGee
+  email:           irunfast@example.com
+  phone:           1234567890
+  password_digest: <%= User.digest('password') %>
+  status:          runn
+  activated:       true
+  activated_at:    <%= Time.zone.now %>
+
+dash:
+  first_name:      Dashy
+  last_name:       McGee
+  email:           irunfaster@example.com
+  phone:           1234567890
+  password_digest: <%= User.digest('password') %>
+  status:          runn
+  activated:       true
+  activated_at:    <%= Time.zone.now %>
+
+#self explanatory and/or obligatory, I forget which is which
+boss:
+  first_name:      Boss
+  last_name:       Bobby
+  email:           bossman@example.com
+  phone:           1234567890
+  password_digest: <%= User.digest('password') %>
+  status:          boss
+  activated:       true
+  activated_at:    <%= Time.zone.now %>

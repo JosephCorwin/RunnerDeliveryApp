@@ -1,0 +1,14 @@
+<% provide(:title, "Your Open Assignments") %>
+<div class="orders">
+<% @orders.each do |o| %>
+  <div class="current-orders <%= o.status %>">
+  		<span class="line-order">
+  			<%= o.customer.user.first_name %> wants <%= o.what_they_want.truncate(27, separator: ' ') %>
+  		</span>
+      <span class="order-created">
+        <%= o.created_at.to_formatted_s(:short) %>
+      </span>
+      <%= link_to "View This Order", o, class: 'button' %>
+  </div>
+<% end %>
+</div>

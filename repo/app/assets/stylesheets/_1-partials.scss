@@ -1,0 +1,55 @@
+
+$global:0.625;
+
+$font:'serenity', sans-serif;
+
+$heavy:900;
+$bold:700;
+$demi:600;
+$med:500;
+$light:300;
+
+$small-space-unit:0.5em;
+$large-space-unit:1em;
+
+$content-width:900px;
+
+$tablet:641px;
+$desktop:961px;
+
+
+
+
+
+
+/* ========================= Colors ============================ */
+
+$maincolor: rgba(227,237,248,1);
+$secondcolor: rgba(33,38,45,1);
+$thirdcolor: rgba(53,82,122,1);
+$fourthcolor: rgba(167,180,196,1);
+
+$highlightcolor:  rgba(132,255,236,1);
+$highlightcolor2: rgba(113,242,186,1);
+$highlightcolor3: rgba(160,200, 40,1);
+$highlightcolor4: rgba(240,200,  0,1);
+
+$errorcolor1:#FF786f;
+$errorcolor2:#CC3824;
+
+$shadowcolor: rgba(33,38,45,.5);
+
+
+@mixin gradient($col1, $col2) {
+	background:$col1; /* Old browsers */
+	background: -moz-linear-gradient(right, $col1 0%, $col2 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(right, $col1 0%,$col2 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, $col1 0%,$col2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+
+/* ========================== Font ============================= */
+@mixin font($em){
+		font-size: ($em*$global) + px;
+		font-size: ($em) + em;
+}

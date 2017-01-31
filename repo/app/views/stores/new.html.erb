@@ -1,0 +1,20 @@
+<% provide(:title, "New Store") %>
+
+<h1>Stores#new</h1>
+<%= form_for(@store) do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'input-reg' %>
+
+  <%= f.label :contact_name %>
+  <%= f.text_field :contact_name, class: 'input-reg' %>
+
+  <%= f.label :contact_phone %>
+  <%= f.text_field :contact_phone, class: 'input-reg'  %>
+
+  <%= f.label :image %>
+  <%= f.file_field :image, class: 'button' %>
+
+  <%= f.submit "Add this store", class: 'button' %>
+
+<% end %>

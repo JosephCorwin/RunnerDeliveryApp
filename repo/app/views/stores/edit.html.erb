@@ -1,0 +1,30 @@
+<% provide(:title, "Edit " + @store.name) %>
+
+<h1>Stores#edit</h1>
+<%= form_for(@store) do |f| %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'input-reg' %>
+
+  <%= f.label :contact_name %>
+  <%= f.text_field :contact_name, class: 'input-reg' %>
+
+  <%= f.label :contact_phone %>
+  <%= f.text_field :contact_phone, class: 'input-reg'  %>
+
+  <% if f.object.image? %>
+
+    <%= image_tag f.object.image.thumb.url %>
+    <%= f.label :remove_image %>
+    <%= f.check_box :remove_image %> 
+
+  <% else %>
+
+    <%= f.label :image, "Store Picture" %>
+    <%= f.file_field :image %>
+      
+  <% end %>
+
+  <%= f.submit "Edit this store", class: 'button' %>
+
+<% end %>
