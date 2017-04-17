@@ -19,3 +19,5 @@ repo/.byebug_history
 # Ignore secrets
 repo/config/secrets.yml
 
+# Ingnore staging folder
+deploy

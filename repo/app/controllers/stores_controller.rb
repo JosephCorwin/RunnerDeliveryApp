@@ -16,7 +16,7 @@ before_action :admin_only, only: [:index, :new, :edit, :update, :destroy]
 
   def show
     @store = Store.find(params[:id])
-    @items = Items.joins(:store).paginate(page: params[:page])
+    @items = Item.joins(:store).paginate(page: params[:page])
   end
 
   def create

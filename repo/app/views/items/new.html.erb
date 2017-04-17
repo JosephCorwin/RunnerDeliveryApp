@@ -1,7 +1,7 @@
 <% provide(:title, "New Item") %>
 
 <h1>Stores#new</h1>
-<%= form_for(@item, url: "new_item/confirmed") do |f| %>
+<%= form_for(@item, url: store_items_url) do |f| %>
 
   <%= f.label :name %>
   <%= f.text_field :name, class: 'input-reg' %>
