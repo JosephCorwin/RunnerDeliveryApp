@@ -23,8 +23,7 @@ optimus = User.create!(  first_name: "Optimus",
                               email: "op@auto.bots",
                               phone: "4628862687",
                            password: "password",
-              password_confirmation: "password",
-                             status: "good"            )
+              password_confirmation: "password")
 optimus.activate!
 optimus.is_runner!
 
@@ -33,8 +32,7 @@ dispatch = User.create!( first_name: "Dispatch",
                               email: "dispatch@runnerdeliveries.com",
                               phone: "0258963214",
                            password: "password",
-              password_confirmation: "password",
-                             status: "good"            )
+              password_confirmation: "password")
 dispatch.activate!
 dispatch.is_dispatcher!
 
@@ -47,8 +45,7 @@ dispatch.is_dispatcher!
                              email: "runner#{n+1}@example.com",
                              phone: (0..9).to_a.shuffle.join,
                           password: "password",
-             password_confirmation: "password",
-                            status: "runn" )
+             password_confirmation: "password")
   user.activate!
   user.is_runner!
 end
@@ -62,8 +59,7 @@ end
                              email: "fired#{n+1}@example.com",
                              phone: (0..9).to_a.shuffle.join,
                           password: "password",
-             password_confirmation: "password",
-                            status: "prob" )
+             password_confirmation: "password")
   user.activate!
   rand(1..17).even? ? user.is_runner! : user.is_dispatcher!
   user.is_fired!
@@ -78,7 +74,7 @@ end
                              email: "customer#{n+1}@example.com",
                              phone: (0..9).to_a.shuffle.join,
                           password: "password",
-             password_confirmation: "password" )
+             password_confirmation: "password")
   user.activate!
 end
 
@@ -91,21 +87,52 @@ end
                              email: "noob#{n+1}@example.com",
                              phone: (0..9).to_a.shuffle.join,
                           password: "password",
-             password_confirmation: "password" )
+             password_confirmation: "password")
 end
 
-#make some orders
+#make some stores
+5.times do |n|
+  store = Store.create!( name: "GG Grocery no.#{n+1}",
+                     location: "@42.083#{rand(9)}09,-78.448#{rand(9)}881",
+                     featured: true)
+
+  store.items.create( name: "Soylent Red",
+               description: "Delicious, nutritious, and widely available!",
+                     price: 1.99,
+                    active: true)
+
+  store.items.create( name: "Soylent Yellow",
+               description: "A protein powerhouse!",
+                     price: 2.99,
+                    active: true)
+
+  store.items.create( name: "Soylent Orange",
+               description: "A citrus blend on the classic flavor",
+                     price: 6.99,
+                    active: true)
+  store.items.create( name: "Soylent Green",
+               description: "Only available on Tuesdays",
+                     price: 10.99,
+                    active: true)
+end
+
+#make some carts
 User.where(status: 'good').each do |u|
-  5.times do
-    @order = u.account.orders.create!(what_they_want: "Stuff!", where_it_goes: "Places!", status: "open")
+  @order = u.account.orders.create!
+  @order.cart_items.create!( attributes = {item_id: rand(1..20), quantity: rand(1..3)} )
+  @order.where_it_goes = "@42.083#{rand(0..9)}09,-78.448#{rand(0..9)}881" 
+  if rand(1..99).even?
+    @order.order!
   end
 end
-Order.all.each do |o| #assign the orders
+#set some orders
+Order.where(status: 'open').each do |o| #assign the orders
   o.update_attribute(:runner_id, rand(2..11))
-  o.update_attribute(:where_to_get, "The store at #{rand(4324-6543)} Main St.")
-  if rand(1-99).even?
+  o.update_attribute(:where_to_get, o.cart_items.first.item.store.location)
+  if rand(1..99).even?
+    o.receipt = "dummy_receipt.jpg"
     o.progress!
-    if rand(1-99).odd?
+    if rand(1..99).odd?
       o.finished!
     end
   end

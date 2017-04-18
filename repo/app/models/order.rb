@@ -13,8 +13,8 @@ class Order < ApplicationRecord
   before_create :set_order_as_cart
 
   #validation parameters
-  validates :what_they_want, presence: true
-  validates :where_it_goes,  presence: true
+  #validates :what_they_want, presence: true
+  #validates :where_it_goes,  presence: true
 
   #email senders
   def send_creation_email
@@ -96,10 +96,8 @@ class Order < ApplicationRecord
       self.runner_id = 1
     end
 
-    def set_order_to_cart
+    def set_order_as_cart
       self.status = 'cart'
     end
-
-  end
 
 end

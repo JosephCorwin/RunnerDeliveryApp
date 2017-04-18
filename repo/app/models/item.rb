@@ -10,6 +10,6 @@ class Item < ApplicationRecord
   #validations
   validates :price, presence: true
 
-  
+  default_scope { where(active: true) }
 
 end
