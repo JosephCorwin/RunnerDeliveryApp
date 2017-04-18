@@ -7,4 +7,9 @@ class Item < ApplicationRecord
   #visual branding
   mount_uploader :image, ImageUploader
 
+  #validations
+  validates :price, presence: true
+
+  
+
 end

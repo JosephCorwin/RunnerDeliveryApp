@@ -9,8 +9,8 @@ class Order < ApplicationRecord
   mount_uploader :receipt, ReceiptUploader
 
   #callbacks
-  before_create { self.runner_id ||= 1 }
-  before_create { self.status ||= 'cart' }
+  before_create :assign_order_to_optimus
+  before_create :set_order_as_cart
 
   #validation parameters
   validates :what_they_want, presence: true
@@ -39,13 +39,17 @@ class Order < ApplicationRecord
   end
 
   def order!
-    if self.where_it_goes.nil?
-      errors.add(:order, "Needs a delivery location")
-    elsif self.what_they_want.nil? || self.cart_items.nil? #leaving what_they_want for vesitgial first-round orders before stores get filled out
-      errors.add(:order, "Need something to deliver")
+    if self.status == 'cart'
+      if self.where_it_goes.nil?
+        errors.add(:order, "needs a delivery location")
+      elsif self.what_they_want.nil? || self.cart_items.nil? #leaving what_they_want for vesitgial first-round orders before stores get filled out
+        errors.add(:order, "needs something to deliver")
+      else
+        self.status = 'open'
+        save
+      end
     else
-      self.status == 'open'
-      save
+      errors.add(:order, 'is already ordered')
     end
   end
 
@@ -63,10 +67,12 @@ class Order < ApplicationRecord
   end
 
   def progress!
-    if self.status == 'open'
+    unless self.receipt.nil?
       self.status = 'prog'
       self.time_obtained = Time.zone.now
       save
+    else
+      errors.add(:order, 'needs a receipt')
     end
   end
 
@@ -75,9 +81,25 @@ class Order < ApplicationRecord
   end
 
   def finished!
-    self.status = 'done'
-    self.time_delivered = Time.zone.now 
-    save
+    if self.status == 'prog'
+      self.status = 'done'
+      self.time_delivered = Time.zone.now 
+      save
+    else
+      errors.add('How did you even get a button to request this?')
+    end
+  end
+
+  private
+  
+    def assign_order_to_optimus
+      self.runner_id = 1
+    end
+
+    def set_order_to_cart
+      self.status = 'cart'
+    end
+
   end
 
 end
