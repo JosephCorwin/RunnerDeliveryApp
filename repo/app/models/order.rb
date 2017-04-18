@@ -3,13 +3,14 @@ class Order < ApplicationRecord
   #relations, far and wide
   belongs_to :customer
   belongs_to :runner
+  has_many :cart_items
 
   #receipts!
   mount_uploader :receipt, ReceiptUploader
 
   #callbacks
   before_save { self.runner_id ||= 1 }
-  before_save { self.status ||= 'open' }
+  before_create { self.status ||= 'cart' }
 
   #validation parameters
   validates :what_they_want, presence: true
@@ -33,6 +34,16 @@ class Order < ApplicationRecord
   end
 
   #status control
+  def ordered?
+    return false if self.status == 'cart'
+  end
+
+  def order!
+    unless self.where_it_goes.nil?
+      self.status == 'open'
+    end
+  end
+
   def assigned?
     return true unless self.runner.id == 1 || self.where_to_get.empty?
   end
@@ -47,13 +58,15 @@ class Order < ApplicationRecord
   end
 
   def progress!
-    self.status = 'prog'
-    self.time_obtained = Time.zone.now 
+    unless self.status == 'done'
+      self.status = 'prog'
+      self.time_obtained = Time.zone.now
+    end
     save
   end
 
   def finished?
-    self.status == 'done'
+    return false unless self.status == 'done'
   end
 
   def finished!
