@@ -9,7 +9,7 @@ class Order < ApplicationRecord
   mount_uploader :receipt, ReceiptUploader
 
   #callbacks
-  before_save { self.runner_id ||= 1 }
+  before_create { self.runner_id ||= 1 }
   before_create { self.status ||= 'cart' }
 
   #validation parameters
@@ -39,13 +39,18 @@ class Order < ApplicationRecord
   end
 
   def order!
-    unless self.where_it_goes.nil?
+    if self.where_it_goes.nil?
+      errors.add(:order, "Needs a delivery location")
+    elsif self.what_they_want.nil? || self.cart_items.nil? #leaving what_they_want for vesitgial first-round orders before stores get filled out
+      errors.add(:order, "Need something to deliver")
+    else
       self.status == 'open'
+      save
     end
   end
 
   def assigned?
-    return true unless self.runner.id == 1 || self.where_to_get.empty?
+    return true unless self.runner.id == 1
   end
 
   def assign!(runner_id)
@@ -58,11 +63,11 @@ class Order < ApplicationRecord
   end
 
   def progress!
-    unless self.status == 'done'
+    if self.status == 'open'
       self.status = 'prog'
       self.time_obtained = Time.zone.now
+      save
     end
-    save
   end
 
   def finished?
