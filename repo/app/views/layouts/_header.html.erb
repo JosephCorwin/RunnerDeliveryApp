@@ -20,7 +20,7 @@
           <%= link_to "Contact", contact_path,:class => "page-link" %>
           <%= link_to "FAQ", faq_path,:class => "page-link" %>
           <% if logged_in? %>
-            <%= link_to "Order", new_orders_path,:class => "page-link" %>
+            <%= link_to "Cart", cart_path, :class => "page-link" %>
             <div class="login-items">
             <%= link_to "Edit Account", edit_user_path(@current_user), class: "acct-link" %>
 

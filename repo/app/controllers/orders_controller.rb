@@ -9,8 +9,8 @@ before_action :correct_user,    only: [:show]
 before_action :correct_runner,  only: [:progress, :finished]
 before_action :admin_only,      only: [:index, :edit, :update]
 
-skip_before_action :set_order,  only: [:new, :create, :index, :assigned]
-skip_before_action :set_runner, only: [:new, :create, :index, :assigned]
+skip_before_action :set_order,  only: [:create, :index, :assigned]
+skip_before_action :set_runner, only: [:create, :index, :assigned]
 
 #RESTful actions
 #visibile
@@ -18,40 +18,28 @@ skip_before_action :set_runner, only: [:new, :create, :index, :assigned]
     @orders = Order.all
   end
 
-  def new
-    unless current_user.orders.last.status == 'done' || current_user.orders.nil?
-      @order = current_user.account.orders.new
-    else
-      redirect_to current_user.orders.last
-    end
-  end
-
   def edit
   end
 
   def show
+    @order ||= current_user.account.orders.last
   end
 
   def assigned
-    user = current_user
-    @orders = Order.all.where(runner_id: user.runner.id)
+    @orders = Order.all.where(runner_id: current_user.runner.id)
   end
 
 #invisible
   def create
-    user = current_user
-    @order = user.account.orders.new(order_params)
-    if @order.save
-      flash[:info] = "Order placed"
-      @order.send_creation_email
-      redirect_to @order
+    @cart = current_user.account.orders.new
+    if @cart.save
+      redirect_to @cart
     else
-      flash[:warning] = "Order could not be placed"
-      render 'new'
+      flash[:warning] = "Cart could not be created"
+      redirect_to root_url
     end
-    
-
   end
+    
 
   def update
     if @order.update_attributes(assignment_params)
@@ -83,12 +71,9 @@ skip_before_action :set_runner, only: [:new, :create, :index, :assigned]
   private
 
     #mass assignment filters
-    def order_params
-      params.require(:order).permit(:what_they_want, :where_it_goes)
-    end
 
     def assignment_params
-      params.require(:order).permit(:runner_id, :where_to_get)
+      params.require(:order).permit(:runner_id)
     end
 
     def progress_params
@@ -98,11 +83,18 @@ skip_before_action :set_runner, only: [:new, :create, :index, :assigned]
     ##callbacks
     #setters
     def set_order
-      @order = Order.find(params[:id])
+      if params[:id]
+        @order = Order.find(params[:id])
+      else
+        @order = current_user.account.orders.last
+        if @order.nil? || @order.status == 'done'
+          create
+        end
+      end
     end
 
     def set_customer
-      @cust = User.find(@order.customer_id)
+      @cust = Customer.find(@order.customer_id).user
     end
 
     def set_runner
@@ -119,7 +111,11 @@ skip_before_action :set_runner, only: [:new, :create, :index, :assigned]
     end
 
     def correct_user
-      redirect_to(root_url) unless current_user?(@cust) || current_user?(@runn) || you_da_boss? || you_dispatch?
+      unless current_user?(@cust) || current_user?(@runn) || you_da_boss? || you_dispatch?
+        redirect_to(root_url) 
+      else
+        return true
+      end
     end
 
     def correct_runner

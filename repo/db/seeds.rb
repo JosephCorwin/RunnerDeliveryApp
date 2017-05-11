@@ -120,7 +120,8 @@ end
 User.where(status: 'good').each do |u|
   @order = u.account.orders.create!
   @order.cart_items.create!( attributes = {item_id: rand(1..20), quantity: rand(1..3)} )
-  @order.where_it_goes = "@42.083#{rand(0..9)}09,-78.448#{rand(0..9)}881" 
+  @order.where_it_goes = "@42.083#{rand(0..9)}09,-78.448#{rand(0..9)}881"
+  @order.save
   if rand(1..99).even?
     @order.order!
   end

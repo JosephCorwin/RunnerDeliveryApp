@@ -1,4 +1,11 @@
 <% provide(:title, @store.name) %>
 <h1><%= @store.name %></h1>
 <%= image_tag @store.image.url %>
+<% for item in @store.items %>
+  <%= link_to item.name, item %> 
+<% end %>
+
+
+<% if you_da_boss? %>
 <%= link_to "Add Item", "#{@store.id}/items/new" %>
+<% end %>

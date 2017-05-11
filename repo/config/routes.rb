@@ -27,16 +27,18 @@ Rails.application.routes.draw do
   post   'users/:id/fire', to: 'users#fire'
 
   #order control routes
+  get    'cart',                to: 'orders#show'
   get    'orders/assigned/',    to: 'orders#assigned'
   post   'orders/:id/progress', to: 'orders#progress'
   post   'orders/:id/finished', to: 'orders#finished'
 
   #RESTful resources
-  resources :users, :orders
-  resource  :users, :orders
+  resources :users
+  resource  :users
+  resources :orders,              only: [:index, :show, :edit, :create, :update, :destroy]
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :cart_items,          only: [:create, :edit, :destroy]
+  resources :cart_items,          only: [:create, :edit, :update, :destroy]
 
   #nested resources
   resources :stores do

@@ -5,7 +5,7 @@
     <% if current_user %>
       <div class="two-grid">
         <h2> Welcome, <%= @current_user.first_name %>!</h2>
-        <%= link_to "Place an Order", new_order_path, class: 'button' %>
+        <%= link_to "Start Shopping", stores_path, class: 'button' %>
         <%= link_to "Edit Your Account", edit_user_path(@current_user), class: 'button'%>
       </div>
       <div class="two-grid">
