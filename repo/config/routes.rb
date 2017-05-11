@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   #get    'stores/:id/new_item',           to: 'items#new'
   #post   'stores/:id/new_item/confirmed', to: 'items#create'
 
-  #user control routes
+  #employee control routes
   post   'users/:id/hire', to: 'users#hire'
   post   'users/:id/fire', to: 'users#fire'
 
@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   resource  :users, :orders
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
+  resources :cart_items,          only: [:create, :edit, :destroy]
 
   #nested resources
   resources :stores do

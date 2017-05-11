@@ -19,7 +19,11 @@ skip_before_action :set_runner, only: [:new, :create, :index, :assigned]
   end
 
   def new
-    @order = current_user.account.orders.new
+    unless current_user.orders.last.status == 'done' || current_user.orders.nil?
+      @order = current_user.account.orders.new
+    else
+      redirect_to current_user.orders.last
+    end
   end
 
   def edit
@@ -51,8 +55,7 @@ skip_before_action :set_runner, only: [:new, :create, :index, :assigned]
 
   def update
     if @order.update_attributes(assignment_params)
-      flash[:success] = "Order assigned"
-      @order.send_assignment_email
+      flash[:success] = "Order updated"
       redirect_to @order
     else
       render 'edit'
