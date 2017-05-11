@@ -25,6 +25,25 @@ module SessionsHelper
     end
   end
 
+  #set the cart
+  def current_cart
+    if current_user
+      @cart = current_user.account.orders.last
+    end
+  end
+
+  #check the cart
+  def cart_status
+    if @cart.status == 'cart'
+      return "Cart (#{@cart.cart_items.count})"
+    elsif @cart.status == 'done'
+      return "New Order"
+    else
+      return "Track Order"
+    end
+  end
+        
+
   #check the user
   def current_user?(user)
     user == current_user

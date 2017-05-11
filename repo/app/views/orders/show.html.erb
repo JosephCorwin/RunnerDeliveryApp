@@ -1,5 +1,15 @@
 <% provide(:title, "Order for " + @order.customer.user.first_name) %>
 
+<% unless @order.cart_items.empty? %>
+<%= render 'cart_items' %>
+<% else %>
+<h1>Your Cart is Empty</h1>
+<%= link_to "Go Shopping", stores_url, class: 'button' %>
+<% end %>
+
+  <!-- Dispatch Controls-->
+  <% if you_da_boss? || you_dispatch? %>
+
 <div class="orders">
 
 <div class="order-details">
@@ -75,8 +85,6 @@
 
 </div>
 
-  <!-- Dispatch Controls-->
-  <% if you_da_boss? || you_dispatch? %>
     <% unless @order.assigned? %> 
       <%= link_to "Dispatch this order",   edit_order_path(@order), class: 'button' %>
     <% else %>

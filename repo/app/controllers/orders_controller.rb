@@ -86,7 +86,7 @@ skip_before_action :set_runner, only: [:create, :index, :assigned]
       if params[:id]
         @order = Order.find(params[:id])
       else
-        @order = current_user.account.orders.last
+        @order = @cart
         if @order.nil? || @order.status == 'done'
           create
         end
