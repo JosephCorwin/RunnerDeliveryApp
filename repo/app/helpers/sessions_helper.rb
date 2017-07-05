@@ -27,7 +27,7 @@ module SessionsHelper
 
   #set the cart
   def current_cart
-    if current_user
+    if current_user && logged_in?
       @cart = current_user.account.orders.last
     end
   end

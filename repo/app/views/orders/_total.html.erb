@@ -1,0 +1,3 @@
+<p>
+Subtotal: <%= number_to_currency(@order.subtotal, precision: 2) %> | Tax: <%= number_to_currency(@order.tax, precision: 2) %> | Total: <%= number_to_currency(@order.total, precision: 2) %>
+</p>

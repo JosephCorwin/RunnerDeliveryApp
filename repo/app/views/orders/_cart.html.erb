@@ -1,0 +1,15 @@
+<% for i in @order.cart_items %>
+<p class="cart-item">
+  <%= image_tag i.item.image.thumb.url %>
+  <%= i.item.name %> |
+  <%= number_to_currency(i.item.price, precision: 2) %>
+  <%= form_for(i) do |f| %>
+    <%= f.submit '&times;', formaction: "/cart_items/#{i.id}/delete" %>
+    <%= f.submit '&minus;', formaction: "/cart_items/#{i.id}/reduce" %>
+    <%= f.number_field :quantity, to: 1..99, step: 1 %>
+    <%= f.submit '&plus;',  formaction: "/cart_items/#{i.id}/increase" %>
+    <%= f.submit %>
+   <% end %>
+</p>
+
+<% end %>

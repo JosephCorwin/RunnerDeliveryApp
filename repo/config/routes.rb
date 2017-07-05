@@ -18,19 +18,19 @@ Rails.application.routes.draw do
   post   'login',   to: 'sessions#create'
   delete 'logout',  to: 'sessions#destroy'
 
-  #item routes
-  #get    'stores/:id/new_item',           to: 'items#new'
-  #post   'stores/:id/new_item/confirmed', to: 'items#create'
-
   #employee control routes
   post   'users/:id/hire', to: 'users#hire'
   post   'users/:id/fire', to: 'users#fire'
 
   #order control routes
-  get    'cart',                to: 'orders#show'
-  get    'orders/assigned/',    to: 'orders#assigned'
-  post   'orders/:id/progress', to: 'orders#progress'
-  post   'orders/:id/finished', to: 'orders#finished'
+  get    'cart',                    to: 'orders#show'
+  post   'cart/order',              to: 'orders#order_it'
+  get    'orders/assigned/',        to: 'orders#assigned'
+  post   'orders/:id/progress',     to: 'orders#progress'
+  post   'orders/:id/finished',     to: 'orders#finished'
+  patch  'cart_items/:id/delete',   to: 'cart_items#destroy'
+  patch  'cart_items/:id/reduce',   to: 'cart_items#reduce'
+  patch  'cart_items/:id/increase', to: 'cart_items#increase'  
 
   #RESTful resources
   resources :users

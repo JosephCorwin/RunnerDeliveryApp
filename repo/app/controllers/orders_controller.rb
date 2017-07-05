@@ -25,10 +25,6 @@ skip_before_action :set_runner, only: [:create, :index, :assigned]
     @order ||= current_user.account.orders.last
   end
 
-  def assigned
-    @orders = Order.all.where(runner_id: current_user.runner.id)
-  end
-
 #invisible
   def create
     @cart = current_user.account.orders.new
@@ -40,6 +36,15 @@ skip_before_action :set_runner, only: [:create, :index, :assigned]
     end
   end
     
+  def order_it
+    byebug
+    unless @order.cart_items.empty? || @order.where_it_goes.nil?
+      @order.order!
+      redirect_to @order
+    else
+      flash[:warning] = "Cannot place order"
+    end
+  end
 
   def update
     if @order.update_attributes(assignment_params)

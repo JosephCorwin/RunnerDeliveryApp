@@ -3,3 +3,9 @@
 <%= image_tag @item.image.url %>
 <p><% @item.description %><p>
 <p><% @item.price %>
+<%= form_for(@cart_item, url: cart_items_url) do |f| %>
+  <%= f.label(:quantity) %>
+  <%= f.number_field(:quantity, in: 1..99, step: 1, value: 1) %>
+  <%= f.hidden_field(:item_id, value: @item.id) %>
+  <%= f.submit %>
+<% end %> 

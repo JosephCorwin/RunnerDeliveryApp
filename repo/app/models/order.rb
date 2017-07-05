@@ -90,6 +90,22 @@ class Order < ApplicationRecord
     end
   end
 
+  def subtotal
+    @subtotal = 0
+    for i in self.cart_items
+      @subtotal += i.item.price * i.quantity
+    end
+    @subtotal
+  end
+
+  def tax
+    @tax = @subtotal * 0.0825
+  end
+
+  def total
+    @total = @subtotal + @tax
+  end
+
   private
   
     def assign_order_to_optimus

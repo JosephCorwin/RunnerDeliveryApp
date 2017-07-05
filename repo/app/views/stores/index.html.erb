@@ -9,7 +9,9 @@
     <li>
       <%= image_tag store.image.thumb.url %>
       <%= link_to store.name, store %>
+      <% if you_da_boss? %>
       <%= link_to "Delete Store", store, method: 'delete', data: { confirm: "Are you sure?" } %>
+      <% end %>
     </li>
   <% end %>
 </ul>
