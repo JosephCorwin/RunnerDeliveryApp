@@ -20,7 +20,10 @@ before_action :admin_only, only: [:index, :new, :edit, :update, :destroy]
   end
 
   def create
+    @address = params[:store][:address]
+    store_params.delete("address")
     @store = Store.new(store_params)
+    @store.create_address(address: @address)
     if @store.save
       flash[:success] = "Store added"
       redirect_to stores_path

@@ -1,5 +1,6 @@
 <% provide(:title, @store.name) %>
 <h1><%= @store.name %></h1>
+<h2><%= @store.address.address %>
 <%= image_tag @store.image.url %>
 <% for item in @store.items %>
   <%= link_to item.name, item %> 
