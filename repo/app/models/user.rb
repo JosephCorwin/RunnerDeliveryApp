@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_one :runner,     dependent: :destroy
   has_one :account,    dependent: :destroy, class_name: 'Customer'
   has_one :dispatcher, dependent: :destroy
+  has_many :addresses, dependent: :destroy, as: :location
 
   #tokens, bruh
   attr_accessor :remember_token, :activation_token, :reset_token

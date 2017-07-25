@@ -24,6 +24,10 @@ gem 'coffee-rails', '~> 4.2'
 # Use Bourbon for default SCSS mixins and styles
 gem 'bourbon'
 
+# Use Geocoder for address validation
+gem 'geocoder'
+gem 'gmaps4rails'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 

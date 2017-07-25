@@ -6,14 +6,14 @@ before_action :ordered?
 skip_before_action :set_cart_item, only: [:create]
 
   def create
-  	@order = @cart
-  	if @order.status == 'cart'
-  		if existing_cart_item = @order.cart_items.select{ |c| c.item_id == params[:cart_item][:item_id] }.first
-  	      existing_cart_item.quantity += create_params[:quantity]
+  	if @cart.status == 'cart'
+  		if existing_cart_item = @cart.cart_items.select{ |c| c.item_id == params[:cart_item][:item_id].to_i }.first
+  	      existing_cart_item.quantity += create_params[:quantity].to_i
   	      existing_cart_item.save
   	    else
-  	      @order.cart_items.create!(create_params)
+  	      @cart.cart_items.create!(create_params)
   	    end
+  	    redirect_to @cart
   	end
   end
 
@@ -56,7 +56,7 @@ skip_before_action :set_cart_item, only: [:create]
     end
 
     def ordered?
-      if @cart_item.order.ordered?
+      if @cart.ordered?
       	redirect_to @cart
       end
     end

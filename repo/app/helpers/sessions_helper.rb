@@ -35,7 +35,12 @@ module SessionsHelper
   #check the cart
   def cart_status
     if @cart.status == 'cart'
-      return "Cart (#{@cart.cart_items.count})"
+      if @cart.subtotal > 0
+        @cart.tax
+        return "Cart (#{number_to_currency(@cart.total, precision: 2)})"
+      else
+        return "Cart"
+      end  
     elsif @cart.status == 'done'
       return "New Order"
     else
