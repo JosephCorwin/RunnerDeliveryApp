@@ -4,10 +4,10 @@ class OrdersController < ApplicationController
 before_action :logged_in_user
 before_action :set_order      
 before_action :set_runner
-before_action :set_customer,    only: [:show]       
-before_action :correct_user,    only: [:show]
-before_action :correct_runner,  only: [:progress, :finished]
-before_action :admin_only,      only: [:index, :edit, :update]
+before_action :set_customer,           only: [:show]       
+before_action :correct_user,           only: [:show]
+before_action :correct_runner,         only: [:progress, :finished]
+before_action :admin_or_dispatch_only, only: [:index, :edit, :update]
 
 skip_before_action :set_order,  only: [:create, :index, :assigned]
 skip_before_action :set_runner, only: [:create, :index, :assigned]
@@ -127,7 +127,7 @@ skip_before_action :set_runner, only: [:create, :index, :assigned]
       redirect_to(root_url) unless current_user?(@runn)
     end
 
-    def admin_only
+    def admin_or_dispatch_only
       unless you_da_boss? || you_dispatch?
         flash[:danger] = "That's my purse I don't know you!"
         redirect_to root_url

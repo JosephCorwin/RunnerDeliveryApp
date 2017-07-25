@@ -55,11 +55,4 @@ before_action :admin_only, only: [:index, :new, :edit, :update, :destroy]
       params.require(:store).permit(:name, :contact_name, :contact_phone, :image)
     end
 
-    def admin_only
-      unless logged_in? && you_da_boss?
-        flash[:danger] = "That's my purse I don't know you!"
-        redirect_to root_url
-      end
-    end
-
 end

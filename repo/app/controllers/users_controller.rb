@@ -37,7 +37,6 @@ skip_before_action :admin_only,     only: [:new, :create, :edit]
   end
 
   def update
-      byebug
       if @user.update_attributes(edit_user_params)
         flash[:success] = "Account info updated!"
         redirect_to @user

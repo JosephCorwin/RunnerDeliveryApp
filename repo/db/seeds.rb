@@ -6,6 +6,29 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+def phony_address
+  ad_no = rand(100..230).to_s
+  if rand(1..99).even?
+    st_ns = "N"
+  else
+    st_ns = "S"
+  end
+  st_no = rand(1..14).to_s
+  if st_no == "1"
+     st_no += "st"
+  elsif st_no == "2"
+    st_no += "nd"
+  elsif st_no == "3"
+    st_no += "rd"
+  else
+    st_no += "th"
+  end
+  return ad_no + " " + st_ns + " " + st_no + "street, Olean, NY"
+end
+
+      
+  
+
 #Make the boss and optimus and the dispatcher
 boss = User.create!(     first_name: "Bossman",
                           last_name: "Bobby",
@@ -16,6 +39,7 @@ boss = User.create!(     first_name: "Bossman",
                              status: "boss",
                           activated: "true",
                        activated_at: Time.zone.now     )
+boss.addresses.create(address: phony_address, name: "home")
 
 
 optimus = User.create!(  first_name: "Optimus",
@@ -46,6 +70,7 @@ dispatch.is_dispatcher!
                              phone: (0..9).to_a.shuffle.join,
                           password: "password",
              password_confirmation: "password")
+  user.addresses.create(address: phony_address, name: "home")
   user.activate!
   user.is_runner!
 end
@@ -60,6 +85,7 @@ end
                              phone: (0..9).to_a.shuffle.join,
                           password: "password",
              password_confirmation: "password")
+  user.addresses.create(address: phony_address, name: "home")
   user.activate!
   rand(1..17).even? ? user.is_runner! : user.is_dispatcher!
   user.is_fired!
@@ -75,6 +101,7 @@ end
                              phone: (0..9).to_a.shuffle.join,
                           password: "password",
              password_confirmation: "password")
+  user.addresses.create(address: phony_address, name: "home")
   user.activate!
 end
 
@@ -88,13 +115,17 @@ end
                              phone: (0..9).to_a.shuffle.join,
                           password: "password",
              password_confirmation: "password")
+  user.addresses.create(address: phony_address, name: "home")
 end
 
 #make some stores
 5.times do |n|
-  store = Store.create!( name: "GG Grocery no.#{n+1}",
+  store = Store.create( name: "GG Grocery no.#{n+1}",
                      location: "@42.083#{rand(9)}09,-78.448#{rand(9)}881",
                      featured: true)
+
+  store.create_address(address: phony_address)
+
 
   store.items.create( name: "Soylent Red",
                description: "Delicious, nutritious, and widely available!",
