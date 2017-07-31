@@ -37,12 +37,15 @@ skip_before_action :set_runner, only: [:create, :index, :assigned]
   end
     
   def order_it
-    byebug
-    unless @order.cart_items.empty? || @order.where_it_goes.nil?
-      @order.order!
+    if @order.cart_items.empty?
+      flash[:warning] = "Cannot place order. Please add items to your cart"
+      redirect_to @order
+    elsif @order.address.nil?
+      flash[:warning] = "Cannot place order. Please specify a delivery address"
       redirect_to @order
     else
-      flash[:warning] = "Cannot place order"
+      @order.order!
+      redirect_to @order
     end
   end
 

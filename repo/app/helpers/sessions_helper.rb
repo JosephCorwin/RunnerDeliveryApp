@@ -9,7 +9,12 @@ module SessionsHelper
     session.delete(:user_id)
     @current_user = nil
   end
-  
+
+  #Stores the URL trying to be accessed.
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
+  end
+
   #set the user
   def current_user
     if (user_id = session[:user_id]) #user is logged_in
@@ -65,9 +70,17 @@ module SessionsHelper
     end
   end
 
+  def require_login
+    unless logged_in?
+      store_location
+      flash[:danger] = "Please log in"
+      redirect_to login_url
+    end
+  end
+
   #restricted access
   def admin_only
-      unless logged_in? && you_da_boss?
+      unless current_user && you_da_boss?
         flash[:danger] = "That's my purse I don't know you!"
         redirect_to root_url
       end
@@ -89,11 +102,6 @@ module SessionsHelper
   def redirect_back_or(default)
     redirect_to(session[:forwarding_url] || default)
     session.delete(:forwarding_url)
-  end
-
-  # Stores the URL trying to be accessed.
-  def store_location
-    session[:forwarding_url] = request.original_url if request.get?
   end
 
   #Permission slips

@@ -13,6 +13,8 @@
         <ul class="user-info">
           <li>Your email: <span><%= @current_user.email %></span></li>
           <li>Your phone: <span><%= @current_user.phone %></span></li>
+          <li><span><%= select_tag "Your delivery address: ", options_from_collection_for_select(@current_user.addresses, "id", "address"), include_blank: "Add a new address" %></span></li>
+
         </ul>
       </div>
 

@@ -17,8 +17,7 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     post password_resets_path, params: { password_reset: { email: @user.email } }
     assert_not_equal @user.reset_digest, @user.reload.reset_digest
     assert_equal 1, ActionMailer::Base.deliveries.size
-    assert_not flash.empty?
-    assert_redirected_to root_url
+    assert_template 'password_resets/check_email'
     # Password reset form
     user = assigns(:user)
     # Wrong email
@@ -39,7 +38,7 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
     # Invalid password & confirmation
     patch password_reset_path(user.reset_token),
           params: { email: user.email,
-                    user: { password:              "foobaz",
+                    user: { password:              "foobar",
                             password_confirmation: "foobaz" } }
     assert_select 'div#error_explanation'
     # Empty password

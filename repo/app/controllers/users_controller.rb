@@ -24,10 +24,13 @@ skip_before_action :admin_only,     only: [:new, :create, :edit]
   end
 
   def create
+    @address = params[:user][:address]
     @user = User.new(new_user_params)
     if @user.save
-       @user.send_activation_email
-       render 'check_email'
+      @user.addresses.create(address: @address)
+      @user.set_primary_address(@user.addresses.first)
+      @user.send_activation_email
+      render 'check_email'
     else
       render 'new'
     end
@@ -39,7 +42,7 @@ skip_before_action :admin_only,     only: [:new, :create, :edit]
   def update
       if @user.update_attributes(edit_user_params)
         flash[:success] = "Account info updated!"
-        redirect_to @user
+        redirect_to root_url
       else
         render 'edit'
       end
@@ -99,13 +102,6 @@ skip_before_action :admin_only,     only: [:new, :create, :edit]
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user) || you_da_boss?
-    end
-
-    def admin_only
-      unless logged_in? && you_da_boss?
-        flash[:danger] = "That's my purse I don't know you!"
-        redirect_to root_url
-      end
     end
 
 end

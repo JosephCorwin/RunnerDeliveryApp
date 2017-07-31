@@ -3,7 +3,8 @@ class Order < ApplicationRecord
   #relations, far and wide
   belongs_to :customer
   belongs_to :runner
-  has_many :cart_items
+  belongs_to :address
+  has_many :cart_items, dependent: :destroy
 
   #receipts!
   mount_uploader :receipt, ReceiptUploader
@@ -11,6 +12,7 @@ class Order < ApplicationRecord
   #callbacks
   before_create :assign_order_to_optimus
   before_create :set_order_as_cart
+  before_create :set_initial_address
 
   #validation parameters
   #validates :what_they_want, presence: true
@@ -40,9 +42,9 @@ class Order < ApplicationRecord
 
   def order!
     if self.status == 'cart'
-      if self.where_it_goes.nil?
+      if self.address.nil?
         errors.add(:order, "needs a delivery location")
-      elsif self.what_they_want.nil? || self.cart_items.nil? #leaving what_they_want for vesitgial first-round orders before stores get filled out
+      elsif self.cart_items.nil? || self.cart_items.nil? #leaving what_they_want for vesitgial first-round orders before stores get filled out
         errors.add(:order, "needs something to deliver")
       else
         self.status = 'open'
@@ -106,6 +108,10 @@ class Order < ApplicationRecord
     @total = @subtotal + @tax
   end
 
+  def set_address(address_id)
+    self.address_id = address_id
+  end
+
   private
   
     def assign_order_to_optimus
@@ -114,6 +120,10 @@ class Order < ApplicationRecord
 
     def set_order_as_cart
       self.status = 'cart'
+    end
+
+    def set_initial_address
+      self.address_id = self.customer.user.primary_address
     end
 
 end

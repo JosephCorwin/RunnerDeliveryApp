@@ -11,16 +11,19 @@
       <%= render 'shared/error_messages' %>
       
       <%= f.label :first_name %>
-      <%= f.text_field :first_name, class: "input-reg" %>
+      <%= f.text_field :first_name, value: "", class: "input-reg" %>
 
       <%= f.label :last_name %>
-      <%= f.text_field :last_name, class: "input-reg" %>
+      <%= f.text_field :last_name, value: "", class: "input-reg" %>
 
       <%= f.label :email %>
-      <%= f.email_field :email, class: "input-reg" %>
+      <%= f.email_field :email, value: "", class: "input-reg" %>
 
       <%= f.label :phone, "Phone Number" %>
-      <%= f.text_field :phone, class: "input-reg" %>
+      <%= f.text_field :phone, value: "", class: "input-reg" %>
+
+      <%= f.label :addresses, "Delivery Address" %>
+      <%= f.text_field :addresses, value: "", class: "input-reg" %>
 
       <%= f.label :password %>
       <%= f.password_field :password, class: "input-reg" %>

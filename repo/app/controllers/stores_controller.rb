@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
 
-before_action :admin_only, only: [:index, :new, :edit, :update, :destroy]
+before_action :admin_only, only: [:new, :edit, :update, :destroy]
 
   def index
     @stores = Store.paginate(page: params[:page])

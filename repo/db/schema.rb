@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170725060640) do
+ActiveRecord::Schema.define(version: 20170727100536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 20170725060640) do
     t.datetime "time_delivered"
     t.string   "receipt"
     t.decimal  "retail_total",   precision: 8, scale: 2
+    t.integer  "address_id"
+    t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
     t.index ["customer_id"], name: "index_orders_on_customer_id", using: :btree
     t.index ["runner_id"], name: "index_orders_on_runner_id", using: :btree
   end
@@ -97,7 +99,6 @@ ActiveRecord::Schema.define(version: 20170725060640) do
     t.string   "featured"
     t.string   "contact_name"
     t.string   "contact_phone"
-    t.string   "location"
   end
 
   create_table "users", force: :cascade do |t|
@@ -116,6 +117,7 @@ ActiveRecord::Schema.define(version: 20170725060640) do
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
     t.string   "image"
+    t.integer  "primary_address"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
@@ -123,5 +125,6 @@ ActiveRecord::Schema.define(version: 20170725060640) do
   add_foreign_key "cart_items", "orders"
   add_foreign_key "customers", "users"
   add_foreign_key "items", "stores"
+  add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "customers"
 end

@@ -27,13 +27,16 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     #creating a user automatically creates a customer account    
     assert_difference 'Customer.count', 1 do
       assert_difference 'User.count', 1 do
-        post signup_path, params: { user: { first_name:            "John",
-                                            last_name:             "Peterson",
-                                            email:                 @random_email,
-                                            password:              "testpass123",
-                                            password_confirmation: "testpass123",
-                                            phone:                 "1234567890",
-                                            status:                "boss" } }
+        assert_difference 'Address.count', 1 do
+          post signup_path, params: { user: { first_name:            "John",
+                                              last_name:             "Peterson",
+                                              email:                 @random_email,
+                                              password:              "testpass123",
+                                              password_confirmation: "testpass123",
+                                              address:               "100 N Broadway, New York, NY",
+                                              phone:                 "1234567890",
+                                              status:                "boss" } }
+        end
       end
     end
     assert_equal 1, ActionMailer::Base.deliveries.size
@@ -52,7 +55,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     # there we go
     get edit_account_activation_path(user.activation_token, email: user.email)
     follow_redirect!
-    assert_template 'users/show'
+    assert_template 'static/home'
     assert logged_in?
     assert user.account
   end

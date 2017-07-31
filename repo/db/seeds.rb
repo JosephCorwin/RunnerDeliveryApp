@@ -40,6 +40,7 @@ boss = User.create!(     first_name: "Bossman",
                           activated: "true",
                        activated_at: Time.zone.now     )
 boss.addresses.create(address: phony_address, name: "home")
+boss.set_primary_address(boss.addresses.first)
 
 
 optimus = User.create!(  first_name: "Optimus",
@@ -61,7 +62,7 @@ dispatch.activate!
 dispatch.is_dispatcher!
 
 #Make some runners
-10.times do |n|
+4.times do |n|
   name1 = "Runner #{n+1}"
   name2 = "Runnn"
   user = User.create!(  first_name: name1,
@@ -71,12 +72,13 @@ dispatch.is_dispatcher!
                           password: "password",
              password_confirmation: "password")
   user.addresses.create(address: phony_address, name: "home")
+  user.set_primary_address(user.addresses.first)
   user.activate!
   user.is_runner!
 end
 
 #make some former employees
-10.times do |n|
+2.times do |n|
   name1 = "Fired #{n+1}"
   name2 = "Gohome"
   user = User.create!(  first_name: name1,
@@ -86,13 +88,14 @@ end
                           password: "password",
              password_confirmation: "password")
   user.addresses.create(address: phony_address, name: "home")
+  user.set_primary_address(user.addresses.first)
   user.activate!
   rand(1..17).even? ? user.is_runner! : user.is_dispatcher!
   user.is_fired!
 end
 
 #make some cusomters
-50.times do |n|
+5.times do |n|
   name1 = "Customer #{n+1}"
   name2 = "Buysstuff"
   user = User.create!(  first_name: name1,
@@ -101,12 +104,13 @@ end
                              phone: (0..9).to_a.shuffle.join,
                           password: "password",
              password_confirmation: "password")
-  user.addresses.create(address: phony_address, name: "home")
+  user.addresses.create!(address: phony_address, name: "home")
+  user.set_primary_address(user.addresses.first)
   user.activate!
 end
 
 #make some new signups
-5.times do |n|
+3.times do |n|
   name1 = "Noob #{n+1}"
   name2 = "Newguy"
   user = User.create!(  first_name: name1,
@@ -115,33 +119,32 @@ end
                              phone: (0..9).to_a.shuffle.join,
                           password: "password",
              password_confirmation: "password")
-  user.addresses.create(address: phony_address, name: "home")
+  user.addresses.create!(address: phony_address, name: "home")
+  user.set_primary_address(user.addresses.first)
 end
 
 #make some stores
 5.times do |n|
-  store = Store.create( name: "GG Grocery no.#{n+1}",
-                     location: "@42.083#{rand(9)}09,-78.448#{rand(9)}881",
+  store = Store.create!( name: "GG Grocery no.#{n+1}",
                      featured: true)
 
   store.create_address(address: phony_address)
-
-
-  store.items.create( name: "Soylent Red",
+  
+  store.items.create!( name: "Soylent Red",
                description: "Delicious, nutritious, and widely available!",
                      price: 1.99,
                     active: true)
 
-  store.items.create( name: "Soylent Yellow",
+  store.items.create!( name: "Soylent Yellow",
                description: "A protein powerhouse!",
                      price: 2.99,
                     active: true)
 
-  store.items.create( name: "Soylent Orange",
+  store.items.create!( name: "Soylent Orange",
                description: "A citrus blend on the classic flavor",
                      price: 6.99,
                     active: true)
-  store.items.create( name: "Soylent Green",
+  store.items.create!( name: "Soylent Green",
                description: "Only available on Tuesdays",
                      price: 10.99,
                     active: true)
@@ -151,16 +154,15 @@ end
 User.where(status: 'good').each do |u|
   @order = u.account.orders.create!
   @order.cart_items.create!( attributes = {item_id: rand(1..20), quantity: rand(1..3)} )
-  @order.where_it_goes = "@42.083#{rand(0..9)}09,-78.448#{rand(0..9)}881"
   @order.save
   if rand(1..99).even?
     @order.order!
   end
 end
 #set some orders
-Order.where(status: 'open').each do |o| #assign the orders
-  o.update_attribute(:runner_id, rand(2..11))
-  o.update_attribute(:where_to_get, o.cart_items.first.item.store.location)
+Order.where(status: 'cart').each do |o| #assign the orders
+  o.update_attribute(:runner_id, rand(2..5))
+  o.update_attribute(:where_to_get, o.cart_items.first.item.store.address.address)
   if rand(1..99).even?
     o.receipt = "dummy_receipt.jpg"
     o.progress!

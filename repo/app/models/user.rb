@@ -82,6 +82,22 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
+  def set_primary_address(address)
+    if address.location_id == self.id 
+      self.primary_address = address.id
+      save
+    end
+  end
+
+  def get_primary_address
+    if self.primary_address
+      Address.find(self.primary_address).address
+    else
+      return false
+    end 
+  end
+
+
   #check digests
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")

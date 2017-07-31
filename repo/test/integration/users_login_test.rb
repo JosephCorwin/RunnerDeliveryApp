@@ -21,13 +21,13 @@ test "login/logout cycle --full" do
     get login_path
     post login_path, params: { session: { email:    @user.email,
                                           password: 'password' } }
-    assert_redirected_to @user
+    assert_redirected_to root_url
     follow_redirect!
     assert logged_in?
-    assert_template 'users/show'
+    assert_template 'static/home'
     assert_select "a[href=?]", login_path,       count: 0
     assert_select "a[href=?]", logout_path
-    assert_select "a[href=?]", profile_path
+    assert_select "a[href=?]", cart_path
     #we done here
     delete logout_path
     assert_redirected_to root_url
@@ -35,13 +35,13 @@ test "login/logout cycle --full" do
     assert_not logged_in?
     assert_select "a[href=?]", login_path
     assert_select "a[href=?]", logout_path,      count: 0
-    assert_select "a[href=?]", profile_path,     count: 0
+    assert_select "a[href=?]", cart_path,     count: 0
     #what if they double browsin' tho?
     delete logout_path
     follow_redirect!
     assert_select "a[href=?]", login_path
     assert_select "a[href=?]", logout_path,      count: 0
-    assert_select "a[href=?]", user_path(@user), count: 0
+    assert_select "a[href=?]", cart_path, count: 0
   end
 
   test "login with remembering" do

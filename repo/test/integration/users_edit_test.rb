@@ -30,9 +30,9 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     get edit_user_path(@user)
     assert_template 'users/edit'
-    patch user_path(@user), params: @edit_params
+    patch user_path(@user), params: @edit_params[:user]
     assert_not flash.empty?
-    assert_redirected_to @user
+    assert_redirected_to root_url
     @user.reload
     assert_equal @edit_params[:user][:first_name],  @user.first_name
     assert_equal @edit_params[:user][:last_name],   @user.last_name
@@ -45,7 +45,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_redirected_to edit_user_url(@user)
     patch user_path(@user), params: @edit_params
     assert_not flash.empty?
-    assert_redirected_to @user
+    assert_redirected_to root_url
     @user.reload
     assert_equal @edit_params[:user][:first_name],  @user.first_name
     assert_equal @edit_params[:user][:last_name],   @user.last_name

@@ -6,6 +6,6 @@ class Store < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
-  validates :address, presence: true
+  #validates :address, presence: true
 
 end

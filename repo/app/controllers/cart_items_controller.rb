@@ -34,8 +34,14 @@ skip_before_action :set_cart_item, only: [:create]
   end
 
   def reduce
-  	@cart_item.quantity -= 1
-  	@cart_item.save
+    if @cart_item.quantity > 1
+  	  @cart_item.quantity -= 1
+      @cart_item.save
+    elsif @cart_item.quantity == 1
+      @cart_item.delete
+    else
+      return nil
+    end
   	redirect_to @cart
   end
 

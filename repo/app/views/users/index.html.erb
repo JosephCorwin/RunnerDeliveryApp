@@ -1,4 +1,7 @@
 <% provide(:title, "User Index") %>
+
+<%= select_tag "User Type", "<option>All</option><option>Runners</option><option>Customers</option><option>Active</option>".html_safe, class: "user-select", id: "user-type-select" %>
+
 <%= will_paginate %>
 
 <ul class="users">
