@@ -54,10 +54,17 @@ gem 'mini_magick', '~> 4.3'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  # Stop using db:reset all the damn time
+  gem 'database_cleaner'
+  # Better testing means better confidence that this is not a bomb  
+  gem 'rspec-rails'
 end
 
 group :test do
   gem 'rails-controller-testing'
+  # Ooh yeah, test the shit out of that shit
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :development do
