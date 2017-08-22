@@ -16,6 +16,9 @@ repo/tmp/*
 # Ignore Byebug command history file.
 repo/.byebug_history
 
+# Ignore rspec persistence file
+repo/spec/examples.txt
+
 # Ignore secrets
 repo/config/secrets.yml
 
